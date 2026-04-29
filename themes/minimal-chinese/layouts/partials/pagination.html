@@ -1,0 +1,65 @@
+{{ $pag := $.Paginator }}
+{{ if gt $pag.TotalPages 1 }}
+<nav class="pagination">
+  {{ if $pag.HasPrev }}
+    <a href="{{ $pag.Prev.URL }}" aria-label="上一页">&laquo;</a>
+  {{ else }}
+    <span class="disabled">&laquo;</span>
+  {{ end }}
+  
+  {{ $total := $pag.TotalPages }}
+  {{ $current := $pag.PageNumber }}
+  {{ $showPages := 5 }}
+  
+  {{ if le $total $showPages }}
+    {{ range $pag.Pagers }}
+      {{ if eq . $pag }}
+        <span class="current">{{ .PageNumber }}</span>
+      {{ else }}
+        <a href="{{ .URL }}" class="page-number">{{ .PageNumber }}</a>
+      {{ end }}
+    {{ end }}
+  {{ else }}
+    {{ if le $current 3 }}
+      {{ range first 4 $pag.Pagers }}
+        {{ if eq . $pag }}
+          <span class="current">{{ .PageNumber }}</span>
+        {{ else }}
+          <a href="{{ .URL }}" class="page-number">{{ .PageNumber }}</a>
+        {{ end }}
+      {{ end }}
+      <span class="ellipsis">...</span>
+      <a href="{{ $pag.Last.URL }}" class="page-number">{{ $total }}</a>
+    {{ else if ge $current (sub $total 2) }}
+      <a href="{{ $pag.First.URL }}" class="page-number">1</a>
+      <span class="ellipsis">...</span>
+      {{ range last 4 $pag.Pagers }}
+        {{ if eq . $pag }}
+          <span class="current">{{ .PageNumber }}</span>
+        {{ else }}
+          <a href="{{ .URL }}" class="page-number">{{ .PageNumber }}</a>
+        {{ end }}
+      {{ end }}
+    {{ else }}
+      <a href="{{ $pag.First.URL }}" class="page-number">1</a>
+      <span class="ellipsis">...</span>
+      {{ range seq (sub $current 1) (add $current 1) }}
+        {{ $pager := index $pag.Pagers (sub . 1) }}
+        {{ if eq $pager $pag }}
+          <span class="current">{{ . }}</span>
+        {{ else }}
+          <a href="{{ $pager.URL }}" class="page-number">{{ . }}</a>
+        {{ end }}
+      {{ end }}
+      <span class="ellipsis">...</span>
+      <a href="{{ $pag.Last.URL }}" class="page-number">{{ $total }}</a>
+    {{ end }}
+  {{ end }}
+  
+  {{ if $pag.HasNext }}
+    <a href="{{ $pag.Next.URL }}" aria-label="下一页">&raquo;</a>
+  {{ else }}
+    <span class="disabled">&raquo;</span>
+  {{ end }}
+</nav>
+{{ end }}

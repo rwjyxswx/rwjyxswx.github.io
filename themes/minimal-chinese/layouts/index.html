@@ -1,0 +1,32 @@
+{{ define "main" }}
+  <section class="hero">
+    <p id="hitokoto" class="hitokoto">
+      <span id="hitokoto-text" style="opacity: 0; transition: opacity 0.3s ease;"></span>
+      <span id="hitokoto-author" class="hitokoto-author"></span>
+    </p>
+  </section>
+  
+  <section class="posts">
+    {{ $paginator := .Paginate (where .Site.RegularPages "Type" "post") .Site.Params.paginate }}
+    <ul class="post-list">
+      {{ range $paginator.Pages }}
+      <li class="post-item">
+        <a href="{{ .Permalink }}" class="post-title">{{ .Title }}</a>
+        <div class="post-meta">
+          <span>{{ .Date.Format "2006年1月2日" }}</span>
+          {{ if .Params.tags }}
+          <span>
+            {{ range .Params.tags }}
+            <a href="/tags/{{ . | urlize }}/" class="tag">{{ . }}</a>
+            {{ end }}
+          </span>
+          {{ end }}
+        </div>
+        <p class="post-excerpt">{{ .Summary }}</p>
+      </li>
+      {{ end }}
+    </ul>
+  </section>
+
+  {{ partial "pagination.html" . }}
+{{ end }}

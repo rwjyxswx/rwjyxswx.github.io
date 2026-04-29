@@ -1,0 +1,18 @@
+{{ define "main" }}
+  <div class="page-content">
+    <h1>标签：{{ .Title }}</h1>
+    <p class="tag-count">共 {{ len .Pages }} 篇文章</p>
+    <ul class="post-list">
+      {{ range (.Paginate .Pages .Site.Params.paginate).Pages }}
+      <li class="post-item">
+        <a href="{{ .Permalink }}" class="post-title">{{ .Title }}</a>
+        <div class="post-meta">
+          <span>{{ .Date.Format "2006年1月2日" }}</span>
+        </div>
+        <p class="post-excerpt">{{ .Summary }}</p>
+      </li>
+      {{ end }}
+    </ul>
+    {{ partial "pagination.html" . }}
+  </div>
+{{ end }}

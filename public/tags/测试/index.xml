@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>测试 on 弥罗</title>
+    <link>http://localhost:1313/tags/%E6%B5%8B%E8%AF%95/</link>
+    <description>Recent content in 测试 on 弥罗</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 01 Jan 2024 10:00:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello World</title>
+      <link>http://localhost:1313/post/2024/01/01/hello-world/</link>
+      <pubDate>Mon, 01 Jan 2024 10:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/post/2024/01/01/hello-world/</guid>
+      <description>&lt;p&gt;这是我的第一篇博客文章。&lt;/p&gt;&#xA;&lt;p&gt;欢迎来到墨庐博客，这是一个极简新中式风格的个人博客。在这里，我将分享技术心得、生活感悟和读书体会。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
