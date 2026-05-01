@@ -1,4 +1,4 @@
-name: Deploy to IPFS via Pinata
+name: Deploy to IPFS via nft.storage
 
 on:
   push:
@@ -33,32 +33,20 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install ipfs-car
-        run: npm install -g ipfs-car
+      - name: Install nft.storage CLI
+        run: npm install -g nft.storage
 
-      - name: Create CAR file from public directory
+      - name: Deploy to IPFS
+        env:
+          NFT_STORAGE_TOKEN: ${{ secrets.NFT_STORAGE_TOKEN }}
         run: |
-          cd public
-          ipfs-car pack . --output ../site.car
-          ls -la ../site.car
-
-      - name: Deploy to Pinata
-        run: |
-          RESPONSE=$(curl -s -X POST "https://api.pinata.cloud/pinning/pinFileToIPFS" \
-            -H "Authorization: Bearer ${{ secrets.PINATA_JWT_TOKEN }}" \
-            -F "file=@site.car")
+          nft.storage upload public --recursive --output json > result.json
           
-          echo "Response: $RESPONSE"
-          
-          if echo "$RESPONSE" | grep -q "IpfsHash"; then
-            CID=$(echo "$RESPONSE" | grep -o '"IpfsHash":"[^"]*' | cut -d'"' -f4)
-            echo "✅ Successfully deployed to IPFS!"
-            echo "CID: $CID"
-            echo ""
-            echo "🌐 Access your site at:"
-            echo "https://gateway.pinata.cloud/ipfs/$CID/"
-            echo "https://ipfs.io/ipfs/$CID/"
-          else
-            echo "❌ Deployment failed!"
-            exit 1
-          fi
+          CID=$(cat result.json | grep -o '"cid":"[^"]*' | cut -d'"' -f4)
+          echo ""
+          echo "✅ Successfully deployed to IPFS!"
+          echo "CID: $CID"
+          echo ""
+          echo "🌐 Access your site at:"
+          echo "https://${CID}.ipfs.nftstorage.link/"
+          echo "https://ipfs.io/ipfs/${CID}/"
