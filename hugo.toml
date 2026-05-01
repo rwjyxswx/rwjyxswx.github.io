@@ -5,6 +5,8 @@ theme = "minimal-chinese"
 defaultContentLanguage = "zh-cn"
 enableRobotsTXT = true
 googleAnalytics = ""
+relativeURLs = true
+uglyURLs = false
 
 [params]
   description = "极简，新中式，博客，技术，随想"

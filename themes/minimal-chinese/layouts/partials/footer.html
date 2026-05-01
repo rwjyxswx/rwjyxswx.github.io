@@ -13,7 +13,7 @@ const searchData = [
 {{- range $index, $post := $posts -}}
   {
     "title": "{{ $post.Title | safeJS }}",
-    "url": "{{ $post.RelPermalink }}",
+    "url": "./{{ $post.RelPermalink }}",
     "date": "{{ $post.Date.Format "2002年9月10日" }}",
     "content": "{{ $post.Summary | plainify | safeJS }}",
     "tags": {{ $post.Params.tags | default slice | jsonify }}
