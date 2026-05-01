@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=56493&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="极简，新中式，博客，技术，随想">
@@ -9,7 +9,7 @@
 
   <title>心得 - 弥罗</title>
 
-<link rel="canonical" href="http://localhost:56493/tags/%E5%BF%83%E5%BE%97/">
+<link rel="canonical" href="/tags/%E5%BF%83%E5%BE%97/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23fff' stroke='%23000' stroke-width='2'/><path d='M50 2 A48 48 0 0 1 50 98 A24 24 0 0 1 50 50 A24 24 0 0 0 50 2' fill='%23000'/><circle cx='50' cy='26' r='6' fill='%23fff'/><circle cx='50' cy='74' r='6' fill='%23000'/></svg>" type="image/svg+xml">
 <link rel="stylesheet" href="/css/style.css">
 
@@ -18,9 +18,9 @@
   <header>
   <div class="container">
     <div class="header-content">
-      <a href="http://localhost:56493/" class="logo">弥罗</a>
+      <a href="/" class="logo">弥罗</a>
       <nav class="nav-links">
-        <a href="http://localhost:56493/">首页</a>
+        <a href="/">首页</a>
         <a href="/tags/">标签</a>
         <a href="/about/">关于</a>
         <button id="search-toggle" class="search-toggle" aria-label="搜索">
@@ -76,7 +76,7 @@
     <ul class="post-list">
     
     <li class="post-item">
-      <a href="http://localhost:56493/post/2024/02/01/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-title">读书笔记</a>
+      <a href="/post/2024/02/01/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-title">读书笔记</a>
       <div class="post-meta">
         <span>2024年2月1日</span>
       </div>
@@ -143,29 +143,18 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!hitokotoText) return;
 
     if (typeof getRandomHitokoto === 'function') {
-      const cachedHitokoto = localStorage.getItem('hitokoto');
-      const cachedAuthor = localStorage.getItem('hitokoto_author');
-      const cacheTime = localStorage.getItem('hitokoto_time');
-      const now = Date.now();
-      const cacheDuration = 3600000;
-
-      if (cachedHitokoto && cacheTime && (now - parseInt(cacheTime, 10)) < cacheDuration) {
-        hitokotoText.textContent = cachedHitokoto;
-        hitokotoText.style.opacity = '1';
-        if (cachedAuthor && hitokotoAuthor) {
-          hitokotoAuthor.textContent = cachedAuthor;
-        }
-        return;
-      }
-
       const quote = getRandomHitokoto();
       hitokotoText.textContent = quote.text;
       hitokotoText.style.opacity = '1';
-      localStorage.setItem('hitokoto', quote.text);
-      localStorage.setItem('hitokoto_time', now.toString());
-      if (quote.author && hitokotoAuthor) {
-        hitokotoAuthor.textContent = '—— ' + quote.author;
-        localStorage.setItem('hitokoto_author', '—— ' + quote.author);
+      
+      if (hitokotoAuthor) {
+        let authorText = '';
+        if (quote.author) {
+          authorText = '—— ' + quote.author;
+        } else if (quote.from) {
+          authorText = '—— ' + quote.from;
+        }
+        hitokotoAuthor.textContent = authorText;
       }
     }
   }

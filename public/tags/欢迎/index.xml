@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>欢迎 on 弥罗</title>
-    <link>http://localhost:56493/tags/%E6%AC%A2%E8%BF%8E/</link>
+    <link>/tags/%E6%AC%A2%E8%BF%8E/</link>
     <description>Recent content in 欢迎 on 弥罗</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Mon, 01 Jan 2024 10:00:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:56493/tags/%E6%AC%A2%E8%BF%8E/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/%E6%AC%A2%E8%BF%8E/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hello World</title>
-      <link>http://localhost:56493/post/2024/01/01/hello-world/</link>
+      <link>/post/2024/01/01/hello-world/</link>
       <pubDate>Mon, 01 Jan 2024 10:00:00 +0800</pubDate>
-      <guid>http://localhost:56493/post/2024/01/01/hello-world/</guid>
+      <guid>/post/2024/01/01/hello-world/</guid>
       <description>&lt;p&gt;这是我的第一篇博客文章。&lt;/p&gt;&#xA;&lt;p&gt;欢迎来到弥罗，这是一个极简新中式风格的个人博客。在这里，我将分享技术心得、生活感悟和读书体会。&lt;/p&gt;</description>
     </item>
   </channel>

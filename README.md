@@ -644,7 +644,6 @@ MIT License
 ### 数据来源
 - [hitokoto-osc/sentences-bundle](https://github.com/hitokoto-osc/sentences-bundle) - 一言开源数据库
 - 本地一言数据涵盖动画、漫画、游戏、文学、诗词、哲学等多种类型
-- 共计8888条经典名言文赋
 
 ### 部署平台
 - [GitHub Pages](https://pages.github.com/) - 免费静态网站托管

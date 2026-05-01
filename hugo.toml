@@ -1,4 +1,4 @@
-baseURL = "https://rwjyxswx.github.io/"
+baseURL = "/"
 languageCode = "zh-CN"
 title = "弥罗"
 theme = "minimal-chinese"
