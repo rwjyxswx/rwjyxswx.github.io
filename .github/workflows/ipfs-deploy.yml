@@ -29,8 +29,33 @@ jobs:
         run: hugo --minify
 
       - name: Upload to Pinata
-        uses: aquasecurity/ipfs-action@v1
-        with:
-          path: public
-          pinataApiKey: ${{ secrets.PINATA_API_KEY }}
-          pinataSecret: ${{ secrets.PINATA_SECRET_API_KEY }}
+        run: |
+          # Create a tar archive of public directory
+          cd public
+          tar -czf ../site.tar.gz .
+          cd ..
+          
+          # Upload to Pinata
+          RESPONSE=$(curl -X POST "https://api.pinata.cloud/pinning/pinFileToIPFS" \
+            -H "Authorization: Bearer ${{ secrets.PINATA_JWT_TOKEN }}" \
+            -F "file=@site.tar.gz" \
+            -F "pinataMetadata={\"name\":\"miluoblog-${{ github.sha }}\"}" \
+            -F "pinataOptions={\"cidVersion\":1}")
+          
+          echo "Response from Pinata:"
+          echo "$RESPONSE"
+          
+          # Extract and verify CID
+          if echo "$RESPONSE" | grep -q '"IpfsHash"'; then
+            CID=$(echo "$RESPONSE" | sed -n 's/.*"IpfsHash":"\([^"]*\)".*/\1/p')
+            echo "✅ Deployment successful!"
+            echo "CID: $CID"
+            echo "Pinata Gateway: https://gateway.pinata.cloud/ipfs/$CID"
+            echo "IPFS.io Gateway: https://ipfs.io/ipfs/$CID"
+            echo "Cloudflare Gateway: https://cloudflare-ipfs.com/ipfs/$CID"
+            exit 0
+          else
+            echo "❌ Deployment failed!"
+            echo "$RESPONSE"
+            exit 1
+          fi
