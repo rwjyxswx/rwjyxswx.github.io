@@ -45,9 +45,18 @@ jobs:
           import requests
           import tarfile
           import io
+          import base64
+
+          api_key = os.environ['NFT_STORAGE_TOKEN']
+          
+          if '.' in api_key:
+              key_id, secret = api_key.split('.', 1)
+              auth_token = base64.b64encode(f"{key_id}:{secret}".encode()).decode()
+              headers = {"Authorization": f"Basic {auth_token}"}
+          else:
+              headers = {"Authorization": f"Bearer {api_key}"}
 
           url = "https://api.nft.storage/upload"
-          headers = {"Authorization": f"Bearer {os.environ['NFT_STORAGE_TOKEN']}"}
 
           tar_buffer = io.BytesIO()
           with tarfile.open(fileobj=tar_buffer, mode='w:gz') as tar:
@@ -55,6 +64,9 @@ jobs:
           tar_buffer.seek(0)
 
           response = requests.post(url, headers=headers, files={"file": ("site.tar.gz", tar_buffer)})
+
+          print(f"Response status: {response.status_code}")
+          print(f"Response text: {response.text[:1000]}")
 
           if response.status_code == 200:
               result = response.json()
