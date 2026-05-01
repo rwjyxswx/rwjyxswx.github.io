@@ -28,74 +28,31 @@ jobs:
       - name: Build Hugo site
         run: hugo --minify
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
+      - name: Install ipfs-deploy
+        run: npm install -g ipfs-deploy
 
-      - name: Install IPFS CLI
+      - name: Deploy to IPFS via Pinata
+        env:
+          IPFS_DEPLOY_PINATA__API_KEY: ${{ secrets.PINATA_API_KEY }}
+          IPFS_DEPLOY_PINATA__SECRET_API_KEY: ${{ secrets.PINATA_SECRET_API_KEY }}
         run: |
-          go install github.com/ipfs/ipfs-cli@latest
+          cd public
+          ipd --provider pinata --no-open
+        continue-on-error: true
 
-      - name: Prepare content for IPFS
-        id: prep
+      - name: Deploy to IPFS via Pinata (fallback)
+        if: failure()
         run: |
-          # Get the list of files to add
-          echo "cid_version=1" >> $GITHUB_OUTPUT
-          echo "wrap_with_directory=true" >> $GITHUB_OUTPUT
-
-      - name: Add to IPFS
-        id: add
-        run: |
-          # Add files to IPFS and capture the root CID
-          ROOT_CID=$(ipfs add -r -Q --wrap-with-directory public/)
-          echo "root_cid=$ROOT_CID" >> $GITHUB_OUTPUT
-          echo "📦 Files added to IPFS with CID: $ROOT_CID"
-
-      - name: Pin to Pinata
-        id: pinata
-        run: |
-          curl -X POST "https://api.pinata.cloud/pinning/pinByHash" \
-            -H "Content-Type: application/json" \
+          # Fallback: Use curl to upload directory
+          cd public
+          
+          # Create tar archive
+          tar -czf ../site.tar.gz .
+          
+          # Upload to Pinata using direct file upload
+          curl -X POST "https://api.pinata.cloud/pinning/pinFileToIPFS" \
+            -H "Content-Type: multipart/form-data" \
             -H "Authorization: Bearer ${{ secrets.PINATA_JWT_TOKEN }}" \
-            -d "{
-              \"hashToPin\": \"${{ steps.add.outputs.root_cid }}\",
-              \"metadata\": {
-                \"name\": \"miluoblog-${{ github.sha }}\"
-              }
-            }"
-
-      - name: Get Pinata Status
-        run: |
-          echo "✅ Successfully pinned to Pinata!"
-          echo "Root CID: ${{ steps.add.outputs.root_cid }}"
-          echo "IPFS Gateway: https://gateway.pinata.cloud/ipfs/${{ steps.add.outputs.root_cid }}"
-          echo "Public Gateway: https://ipfs.io/ipfs/${{ steps.add.outputs.root_cid }}"
-
-      - name: Comment on PR
-        if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '## 🚀 Deployed to IPFS!\n\n**CID:** `' + "${{ steps.add.outputs.root_cid }}" + '`\n\n**网关访问：**\n- Pinata: https://gateway.pinata.cloud/ipfs/${{ steps.add.outputs.root_cid }}\n- IPFS.io: https://ipfs.io/ipfs/${{ steps.add.outputs.root_cid }}\n- Cloudflare: https://cloudflare-ipfs.com/ipfs/${{ steps.add.outputs.root_cid }}'
-            })
-
-      - name: Update deployment info
-        run: |
-          echo "## IPFS Deployment Summary" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "✅ **Successfully deployed to IPFS!**" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Root CID:** \`${{ steps.add.outputs.root_cid }}\`" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### 🌐 IPFS Gateways" >> $GITHUB_STEP_SUMMARY
-          echo "| 网关 | 地址 |" >> $GITHUB_STEP_SUMMARY
-          echo "|------|------|" >> $GITHUB_STEP_SUMMARY
-          echo "| Pinata | https://gateway.pinata.cloud/ipfs/${{ steps.add.outputs.root_cid }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| IPFS.io | https://ipfs.io/ipfs/${{ steps.add.outputs.root_cid }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Cloudflare | https://cloudflare-ipfs.com/ipfs/${{ steps.add.outputs.root_cid }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Infura | https://ipfs.infura.io/ipfs/${{ steps.add.outputs.root_cid }} |" >> $GITHUB_STEP_SUMMARY
+            -F "file=@../site.tar.gz" \
+            -F "pinataMetadata={\"name\":\"miluoblog-${{ github.sha }}\"}" \
+            -F "pinataOptions={\"cidVersion\":1}"
