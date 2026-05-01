@@ -28,34 +28,50 @@ jobs:
       - name: Build Hugo site
         run: hugo --minify
 
-      - name: Upload to Pinata
+      - name: Install IPFS
         run: |
-          # Create a tar archive of public directory
-          cd public
-          tar -czf ../site.tar.gz .
-          cd ..
-          
-          # Upload to Pinata
-          RESPONSE=$(curl -X POST "https://api.pinata.cloud/pinning/pinFileToIPFS" \
+          # Download and install IPFS CLI
+          curl -L https://dist.ipfs.tech/kubo/v0.28.0/kubo_v0.28.0_linux-amd64.tar.gz -o /tmp/kubo.tar.gz
+          tar -xzf /tmp/kubo.tar.gz -C /tmp
+          sudo mv /tmp/kubo/ipfs /usr/local/bin/ipfs
+          sudo mv /tmp/kubo/ipfs-watch /usr/local/bin/ipfs-watch 2>/dev/null || true
+          ipfs version
+
+      - name: Start IPFS daemon
+        run: |
+          ipfs daemon --init &
+          sleep 5
+          ipfs id
+
+      - name: Add files to IPFS
+        id: add
+        run: |
+          # Add public directory to IPFS with directory wrapping
+          CID=$(ipfs add -r -w public/ | tail -n 1 | awk '{print $2}')
+          echo "root_cid=$CID" >> $GITHUB_OUTPUT
+          echo "📦 Added to IPFS with CID: $CID"
+
+      - name: Pin to Pinata
+        run: |
+          curl -X POST "https://api.pinata.cloud/pinning/pinByHash" \
+            -H "Content-Type: application/json" \
             -H "Authorization: Bearer ${{ secrets.PINATA_JWT_TOKEN }}" \
-            -F "file=@site.tar.gz" \
-            -F "pinataMetadata={\"name\":\"miluoblog-${{ github.sha }}\"}" \
-            -F "pinataOptions={\"cidVersion\":1}")
-          
-          echo "Response from Pinata:"
-          echo "$RESPONSE"
-          
-          # Extract and verify CID
-          if echo "$RESPONSE" | grep -q '"IpfsHash"'; then
-            CID=$(echo "$RESPONSE" | sed -n 's/.*"IpfsHash":"\([^"]*\)".*/\1/p')
-            echo "✅ Deployment successful!"
-            echo "CID: $CID"
-            echo "Pinata Gateway: https://gateway.pinata.cloud/ipfs/$CID"
-            echo "IPFS.io Gateway: https://ipfs.io/ipfs/$CID"
-            echo "Cloudflare Gateway: https://cloudflare-ipfs.com/ipfs/$CID"
-            exit 0
-          else
-            echo "❌ Deployment failed!"
-            echo "$RESPONSE"
-            exit 1
-          fi
+            -d "{
+              \"hashToPin\": \"${{ steps.add.outputs.root_cid }}\",
+              \"metadata\": {
+                \"name\": \"miluoblog-${{ github.run_number }}\"
+              }
+            }"
+
+      - name: Show results
+        run: |
+          echo "✅ Successfully deployed to IPFS!"
+          echo ""
+          echo "CID: ${{ steps.add.outputs.root_cid }}"
+          echo ""
+          echo "🌐 Access your site at:"
+          echo "https://gateway.pinata.cloud/ipfs/${{ steps.add.outputs.root_cid }}"
+          echo "https://ipfs.io/ipfs/${{ steps.add.outputs.root_cid }}"
+          echo "https://cloudflare-ipfs.com/ipfs/${{ steps.add.outputs.root_cid }}"
+          echo ""
+          echo "📋 Note: It may take a few minutes for the content to propagate to all gateways."
