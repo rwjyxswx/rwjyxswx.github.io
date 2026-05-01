@@ -28,37 +28,9 @@ jobs:
       - name: Build Hugo site
         run: hugo --minify
 
-      - name: Deploy to Pinata
-        run: |
-          # Create a temporary directory and archive
-          cd public
-          
-          # Find all files and create a mapping
-          FILES=()
-          for file in $(find . -type f); do
-            # Remove leading ./
-            filepath="${file#./}"
-            # Add to files array in Pinata format
-            FILES+=("-F" "file=@${filepath};filename=${filepath}")
-          done
-          
-          # Upload to Pinata using pinFileToIPFS
-          RESPONSE=$(curl -X POST "https://api.pinata.cloud/pinning/pinFileToIPFS" \
-            -H "Authorization: Bearer ${{ secrets.PINATA_JWT_TOKEN }}" \
-            -F "pinataMetadata={\"name\":\"miluoblog-${{ github.sha }}\"}" \
-            -F "pinataOptions={\"cidVersion\":1}" \
-            "${FILES[@]}")
-          
-          echo "$RESPONSE"
-          
-          # Extract CID from response
-          if echo "$RESPONSE" | grep -q '"IpfsHash"'; then
-            CID=$(echo "$RESPONSE" | grep -o '"IpfsHash":"[^"]*"' | cut -d'"' -f4)
-            echo "✅ Successfully deployed!"
-            echo "CID: $CID"
-            echo "Gateway: https://gateway.pinata.cloud/ipfs/$CID"
-          else
-            echo "❌ Deployment failed"
-            echo "$RESPONSE"
-            exit 1
-          fi
+      - name: Upload to Pinata
+        uses: aquasecurity/ipfs-action@v1
+        with:
+          path: public
+          pinataApiKey: ${{ secrets.PINATA_API_KEY }}
+          pinataSecret: ${{ secrets.PINATA_SECRET_API_KEY }}
