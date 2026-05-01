@@ -28,50 +28,43 @@ jobs:
       - name: Build Hugo site
         run: hugo --minify
 
-      - name: Install IPFS
+      - name: Deploy to Pinata (direct upload)
         run: |
-          # Download and install IPFS CLI
-          curl -L https://dist.ipfs.tech/kubo/v0.28.0/kubo_v0.28.0_linux-amd64.tar.gz -o /tmp/kubo.tar.gz
-          tar -xzf /tmp/kubo.tar.gz -C /tmp
-          sudo mv /tmp/kubo/ipfs /usr/local/bin/ipfs
-          sudo mv /tmp/kubo/ipfs-watch /usr/local/bin/ipfs-watch 2>/dev/null || true
-          ipfs version
-
-      - name: Start IPFS daemon
-        run: |
-          ipfs daemon --init &
-          sleep 5
-          ipfs id
-
-      - name: Add files to IPFS
-        id: add
-        run: |
-          # Add public directory to IPFS with directory wrapping
-          CID=$(ipfs add -r -w public/ | tail -n 1 | awk '{print $2}')
-          echo "root_cid=$CID" >> $GITHUB_OUTPUT
-          echo "📦 Added to IPFS with CID: $CID"
-
-      - name: Pin to Pinata
-        run: |
-          curl -X POST "https://api.pinata.cloud/pinning/pinByHash" \
-            -H "Content-Type: application/json" \
+          # Navigate to public directory
+          cd public
+          
+          # Create multipart form data for all files
+          BOUNDARY="----WebKitFormBoundary$(date +%s)"
+          
+          # Start building the multipart body
+          {
+            echo "--$BOUNDARY"
+            echo 'Content-Disposition: form-data; name="pinataMetadata"'
+            echo 'Content-Type: application/json'
+            echo ""
+            echo "{\"name\":\"miluoblog-${{ github.sha }}\"}"
+            
+            echo "--$BOUNDARY"
+            echo 'Content-Disposition: form-data; name="pinataOptions"'
+            echo 'Content-Type: application/json'
+            echo ""
+            echo "{\"cidVersion\":1}"
+            
+            # Add each file
+            find . -type f | while read -r filepath; do
+              filename="${filepath#./}"
+              echo "--$BOUNDARY"
+              echo "Content-Disposition: form-data; name=\"file\"; filename=\"$filename\""
+              echo "Content-Type: application/octet-stream"
+              echo ""
+              cat "$filepath"
+            done
+            
+            echo "--$BOUNDARY--"
+          } | curl -X POST "https://api.pinata.cloud/pinning/pinFileToIPFS" \
             -H "Authorization: Bearer ${{ secrets.PINATA_JWT_TOKEN }}" \
-            -d "{
-              \"hashToPin\": \"${{ steps.add.outputs.root_cid }}\",
-              \"metadata\": {
-                \"name\": \"miluoblog-${{ github.run_number }}\"
-              }
-            }"
-
-      - name: Show results
-        run: |
-          echo "✅ Successfully deployed to IPFS!"
+            -H "Content-Type: multipart/form-data; boundary=$BOUNDARY" \
+            --data-binary @-
+          
           echo ""
-          echo "CID: ${{ steps.add.outputs.root_cid }}"
-          echo ""
-          echo "🌐 Access your site at:"
-          echo "https://gateway.pinata.cloud/ipfs/${{ steps.add.outputs.root_cid }}"
-          echo "https://ipfs.io/ipfs/${{ steps.add.outputs.root_cid }}"
-          echo "https://cloudflare-ipfs.com/ipfs/${{ steps.add.outputs.root_cid }}"
-          echo ""
-          echo "📋 Note: It may take a few minutes for the content to propagate to all gateways."
+          echo "✅ Upload completed!"
