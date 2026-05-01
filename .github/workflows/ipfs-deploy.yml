@@ -1,4 +1,4 @@
-name: Deploy to IPFS
+name: Deploy to IPFS via Pinata
 
 on:
   push:
@@ -34,29 +34,33 @@ jobs:
           tar -xzf /tmp/kubo.tar.gz -C /tmp
           sudo mv /tmp/kubo/ipfs /usr/local/bin/
           ipfs init --profile=lowpower
-          ipfs daemon &
-          sleep 5
 
-      - name: Add files to IPFS
-        id: ipfs-add
+      - name: Create CAR file
+        id: create-car
         run: |
           cd public
-          CID=$(ipfs add -rQ .)
+          ipfs add -rQ . > /tmp/cid.txt
+          CID=$(cat /tmp/cid.txt)
+          ipfs dag export $CID > ../site.car
           echo "cid=$CID" >> $GITHUB_OUTPUT
           echo "📦 Directory CID: $CID"
 
-      - name: Show deployment results
+      - name: Pin to Pinata
+        env:
+          PINATA_JWT: ${{ secrets.PINATA_JWT_TOKEN }}
         run: |
-          echo ""
-          echo "✅ Successfully deployed to IPFS!"
-          echo ""
-          echo "📋 Site CID: ${{ steps.ipfs-add.outputs.cid }}"
-          echo ""
-          echo "🌐 Access your site via these gateways:"
-          echo "  • https://ipfs.io/ipfs/${{ steps.ipfs-add.outputs.cid }}/"
-          echo "  • https://cloudflare-ipfs.com/ipfs/${{ steps.ipfs-add.outputs.cid }}/"
-          echo "  • https://gateway.pinata.cloud/ipfs/${{ steps.ipfs-add.outputs.cid }}/"
-          echo "  • https://dweb.link/ipfs/${{ steps.ipfs-add.outputs.cid }}/"
-          echo ""
-          echo "💡 Note: To ensure permanent availability, you can pin this CID to a pinning service like Pinata, nft.storage, or Web3.storage"
-          echo "💡 Simply use the CID: ${{ steps.ipfs-add.outputs.cid }}"
+          RESPONSE=$(curl -s -X POST "https://api.pinata.cloud/pinning/pinFileToIPFS" \
+            -H "Authorization: Bearer $PINATA_JWT" \
+            -F "file=@site.car")
+          
+          echo "Response: $RESPONSE"
+          
+          if echo "$RESPONSE" | grep -q "IpfsHash"; then
+            echo "✅ Successfully pinned to Pinata!"
+            echo "🌐 Access your site:"
+            echo "https://gateway.pinata.cloud/ipfs/${{ steps.create-car.outputs.cid }}/"
+            echo "https://ipfs.io/ipfs/${{ steps.create-car.outputs.cid }}/"
+          else
+            echo "❌ Failed: $RESPONSE"
+            exit 1
+          fi
