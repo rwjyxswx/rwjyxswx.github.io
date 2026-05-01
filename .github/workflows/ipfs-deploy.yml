@@ -28,31 +28,37 @@ jobs:
       - name: Build Hugo site
         run: hugo --minify
 
-      - name: Install ipfs-deploy
-        run: npm install -g ipfs-deploy
-
-      - name: Deploy to IPFS via Pinata
-        env:
-          IPFS_DEPLOY_PINATA__API_KEY: ${{ secrets.PINATA_API_KEY }}
-          IPFS_DEPLOY_PINATA__SECRET_API_KEY: ${{ secrets.PINATA_SECRET_API_KEY }}
+      - name: Deploy to Pinata
         run: |
-          cd public
-          ipd --provider pinata --no-open
-        continue-on-error: true
-
-      - name: Deploy to IPFS via Pinata (fallback)
-        if: failure()
-        run: |
-          # Fallback: Use curl to upload directory
+          # Create a temporary directory and archive
           cd public
           
-          # Create tar archive
-          tar -czf ../site.tar.gz .
+          # Find all files and create a mapping
+          FILES=()
+          for file in $(find . -type f); do
+            # Remove leading ./
+            filepath="${file#./}"
+            # Add to files array in Pinata format
+            FILES+=("-F" "file=@${filepath};filename=${filepath}")
+          done
           
-          # Upload to Pinata using direct file upload
-          curl -X POST "https://api.pinata.cloud/pinning/pinFileToIPFS" \
-            -H "Content-Type: multipart/form-data" \
+          # Upload to Pinata using pinFileToIPFS
+          RESPONSE=$(curl -X POST "https://api.pinata.cloud/pinning/pinFileToIPFS" \
             -H "Authorization: Bearer ${{ secrets.PINATA_JWT_TOKEN }}" \
-            -F "file=@../site.tar.gz" \
             -F "pinataMetadata={\"name\":\"miluoblog-${{ github.sha }}\"}" \
-            -F "pinataOptions={\"cidVersion\":1}"
+            -F "pinataOptions={\"cidVersion\":1}" \
+            "${FILES[@]}")
+          
+          echo "$RESPONSE"
+          
+          # Extract CID from response
+          if echo "$RESPONSE" | grep -q '"IpfsHash"'; then
+            CID=$(echo "$RESPONSE" | grep -o '"IpfsHash":"[^"]*"' | cut -d'"' -f4)
+            echo "✅ Successfully deployed!"
+            echo "CID: $CID"
+            echo "Gateway: https://gateway.pinata.cloud/ipfs/$CID"
+          else
+            echo "❌ Deployment failed"
+            echo "$RESPONSE"
+            exit 1
+          fi
