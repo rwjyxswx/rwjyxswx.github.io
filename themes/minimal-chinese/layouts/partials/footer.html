@@ -6,7 +6,7 @@
     </div>
   </div>
 </footer>
-<script src="/js/hitokoto-data.js"></script>
+<script src="{{ "js/hitokoto-data.js" | relURL }}"></script>
 <script>
 const searchData = [
 {{- $posts := where .Site.RegularPages "Type" "post" -}}
