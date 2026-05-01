@@ -6,6 +6,7 @@
     </div>
   </div>
 </footer>
+<script src="/js/hitokoto-data.js"></script>
 <script>
 const searchData = [
 {{- $posts := where .Site.RegularPages "Type" "post" -}}
@@ -40,48 +41,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const hitokotoAuthor = document.getElementById('hitokoto-author');
     if (!hitokotoText) return;
 
-    const cachedHitokoto = localStorage.getItem('hitokoto');
-    const cachedAuthor = localStorage.getItem('hitokoto_author');
-    const cacheTime = localStorage.getItem('hitokoto_time');
-    const now = Date.now();
-    const cacheDuration = 3600000;
-
-    if (cachedHitokoto && cacheTime && (now - parseInt(cacheTime, 10)) < cacheDuration) {
-      hitokotoText.textContent = cachedHitokoto;
+    if (typeof getRandomHitokoto === 'function') {
+      const quote = getRandomHitokoto();
+      hitokotoText.textContent = quote.text;
       hitokotoText.style.opacity = '1';
-      if (cachedAuthor && hitokotoAuthor) {
-        hitokotoAuthor.textContent = cachedAuthor;
+      
+      if (hitokotoAuthor) {
+        let authorText = '';
+        if (quote.author) {
+          authorText = '—— ' + quote.author;
+        } else if (quote.from) {
+          authorText = '—— ' + quote.from;
+        }
+        hitokotoAuthor.textContent = authorText;
       }
     }
-
-    fetch('https://v1.hitokoto.cn/?c=a&c=b&c=c&c=d&c=e&c=f&c=g', {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json'
-      },
-      timeout: 5000
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        if (data && data.hitokoto) {
-          hitokotoText.textContent = data.hitokoto;
-          hitokotoText.style.opacity = '1';
-          localStorage.setItem('hitokoto', data.hitokoto);
-          localStorage.setItem('hitokoto_time', now.toString());
-          if (data.from && hitokotoAuthor) {
-            hitokotoAuthor.textContent = '—— ' + data.from;
-            localStorage.setItem('hitokoto_author', '—— ' + data.from);
-          }
-        }
-      })
-      .catch(error => {
-        console.error('Failed to load hitokoto:', error);
-      });
   }
   loadHitokoto();
 

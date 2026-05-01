@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>弥罗</title>
-    <link>http://localhost:1313/</link>
+    <link>http://localhost:56493/</link>
     <description>Recent content on 弥罗</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Wed, 29 Apr 2026 14:14:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:56493/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>关于</title>
-      <link>http://localhost:1313/about/</link>
+      <link>http://localhost:56493/about/</link>
       <pubDate>Wed, 29 Apr 2026 14:14:00 +0800</pubDate>
-      <guid>http://localhost:1313/about/</guid>
+      <guid>http://localhost:56493/about/</guid>
       <description>&lt;h2 id=&#34;关于本站&#34;&gt;关于本站&lt;/h2&gt;&#xA;&lt;p&gt;「弥罗」取自「包罗万象，罗致精华」之意。&lt;/p&gt;&#xA;&lt;p&gt;这是一个记录思考与成长的空间。这里没有喧嚣，只有文字的静谧；没有浮躁，只有思想的沉淀。希望这些文字，能在某个时刻，与你产生共鸣。&lt;/p&gt;&#xA;&lt;h2 id=&#34;关于作者&#34;&gt;关于作者&lt;/h2&gt;&#xA;&lt;p&gt;太一，一个热爱技术与传统文化的开发者。&lt;/p&gt;&#xA;&lt;p&gt;在代码的世界里，我追求简洁与高效；在传统的海洋中，我探索意境与韵味。这个博客，便是二者交汇的小小天地。&lt;/p&gt;&#xA;&lt;h2 id=&#34;联系方式&#34;&gt;联系方式&lt;/h2&gt;&#xA;&lt;p&gt;如果你有任何问题或建议，或者只是想打个招呼，欢迎通过以下方式联系我：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;邮箱：&lt;a href=&#34;mailto:rwjyxswx@gmail.com&#34;&gt;rwjyxswx@gmail.com&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;GitHub：&lt;a href=&#34;https://github.com/rwjyxswx&#34;&gt;github.com/rwjyxswx&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;版权声明&#34;&gt;版权声明&lt;/h2&gt;&#xA;&lt;p&gt;本博客所有文章，除非特别说明，均采用 &lt;a href=&#34;https://creativecommons.org/licenses/by-sa/4.0/&#34;&gt;CC BY-SA 4.0&lt;/a&gt; 许可协议。&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;路漫漫其修远兮，吾将上下而求索。&lt;/p&gt;&#xA;&lt;p&gt;——《离骚》&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>读书笔记</title>
-      <link>http://localhost:1313/post/2024/02/01/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+      <link>http://localhost:56493/post/2024/02/01/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Thu, 01 Feb 2024 16:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/post/2024/02/01/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
-      <description>&lt;p&gt;读书使人充实，思考使人深邃。&lt;/p&gt;&#xA;&lt;h2 id=&#34;近期阅读&#34;&gt;近期阅读&lt;/h2&gt;&#xA;&lt;p&gt;最近读了几本好书，在这里分享一些心得体会。&lt;/p&gt;</description>
+      <guid>http://localhost:56493/post/2024/02/01/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;读书使人充实，思考使人深邃。&lt;/p&gt;</description>
     </item>
     <item>
       <title>技术入门</title>
-      <link>http://localhost:1313/post/2024/01/15/%E6%8A%80%E6%9C%AF%E5%85%A5%E9%97%A8/</link>
+      <link>http://localhost:56493/post/2024/01/15/%E6%8A%80%E6%9C%AF%E5%85%A5%E9%97%A8/</link>
       <pubDate>Mon, 15 Jan 2024 14:30:00 +0800</pubDate>
-      <guid>http://localhost:1313/post/2024/01/15/%E6%8A%80%E6%9C%AF%E5%85%A5%E9%97%A8/</guid>
+      <guid>http://localhost:56493/post/2024/01/15/%E6%8A%80%E6%9C%AF%E5%85%A5%E9%97%A8/</guid>
       <description>&lt;p&gt;技术之路，始于足下。&lt;/p&gt;&#xA;&lt;p&gt;学习技术需要耐心和坚持。本文将介绍一些入门级的技术概念，帮助初学者快速上手。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hello World</title>
-      <link>http://localhost:1313/post/2024/01/01/hello-world/</link>
+      <link>http://localhost:56493/post/2024/01/01/hello-world/</link>
       <pubDate>Mon, 01 Jan 2024 10:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/post/2024/01/01/hello-world/</guid>
+      <guid>http://localhost:56493/post/2024/01/01/hello-world/</guid>
       <description>&lt;p&gt;这是我的第一篇博客文章。&lt;/p&gt;&#xA;&lt;p&gt;欢迎来到弥罗，这是一个极简新中式风格的个人博客。在这里，我将分享技术心得、生活感悟和读书体会。&lt;/p&gt;</description>
     </item>
   </channel>

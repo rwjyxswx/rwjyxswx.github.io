@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=56493&amp;path=livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="极简，新中式，博客，技术，随想">
@@ -9,19 +9,18 @@
 
   <title>心得 - 弥罗</title>
 
-<link rel="canonical" href="http://localhost:1313/tags/%E5%BF%83%E5%BE%97/">
+<link rel="canonical" href="http://localhost:56493/tags/%E5%BF%83%E5%BE%97/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23fff' stroke='%23000' stroke-width='2'/><path d='M50 2 A48 48 0 0 1 50 98 A24 24 0 0 1 50 50 A24 24 0 0 0 50 2' fill='%23000'/><circle cx='50' cy='26' r='6' fill='%23fff'/><circle cx='50' cy='74' r='6' fill='%23000'/></svg>" type="image/svg+xml">
 <link rel="stylesheet" href="/css/style.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 </head>
 <body>
   <header>
   <div class="container">
     <div class="header-content">
-      <a href="http://localhost:1313/" class="logo">弥罗</a>
+      <a href="http://localhost:56493/" class="logo">弥罗</a>
       <nav class="nav-links">
-        <a href="http://localhost:1313/">首页</a>
+        <a href="http://localhost:56493/">首页</a>
         <a href="/tags/">标签</a>
         <a href="/about/">关于</a>
         <button id="search-toggle" class="search-toggle" aria-label="搜索">
@@ -77,13 +76,11 @@
     <ul class="post-list">
     
     <li class="post-item">
-      <a href="http://localhost:1313/post/2024/02/01/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-title">读书笔记</a>
+      <a href="http://localhost:56493/post/2024/02/01/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-title">读书笔记</a>
       <div class="post-meta">
         <span>2024年2月1日</span>
       </div>
-      <p class="post-excerpt"><p>读书使人充实，思考使人深邃。</p>
-<h2 id="近期阅读">近期阅读</h2>
-<p>最近读了几本好书，在这里分享一些心得体会。</p></p>
+      <p class="post-excerpt"><p>读书使人充实，思考使人深邃。</p></p>
     </li>
     
     </ul>
@@ -103,12 +100,13 @@
     </div>
   </div>
 </footer>
+<script src="/js/hitokoto-data.js"></script>
 <script>
 const searchData = [{
     "title": "读书笔记",
     "url": "\/post\/2024\/02\/01\/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0\/",
     "date": "1032年9月20日",
-    "content": "读书使人充实，思考使人深邃。\n近期阅读 最近读了几本好书，在这里分享一些心得体会。\n",
+    "content": "读书使人充实，思考使人深邃。\n",
     "tags": "[\"读书\",\"心得\"]"
   },{
     "title": "技术入门",
@@ -120,7 +118,7 @@ const searchData = [{
     "title": "Hello World",
     "url": "\/post\/2024\/01\/01\/hello-world\/",
     "date": "1001年9月10日",
-    "content": "这是我的第一篇博客文章。\n欢迎来到墨庐博客，这是一个极简新中式风格的个人博客。在这里，我将分享技术心得、生活感悟和读书体会。\n",
+    "content": "这是我的第一篇博客文章。\n欢迎来到弥罗，这是一个极简新中式风格的个人博客。在这里，我将分享技术心得、生活感悟和读书体会。\n",
     "tags": "[\"欢迎\",\"测试\"]"
   }];
 
@@ -144,48 +142,32 @@ document.addEventListener('DOMContentLoaded', function() {
     const hitokotoAuthor = document.getElementById('hitokoto-author');
     if (!hitokotoText) return;
 
-    const cachedHitokoto = localStorage.getItem('hitokoto');
-    const cachedAuthor = localStorage.getItem('hitokoto_author');
-    const cacheTime = localStorage.getItem('hitokoto_time');
-    const now = Date.now();
-    const cacheDuration = 3600000;
+    if (typeof getRandomHitokoto === 'function') {
+      const cachedHitokoto = localStorage.getItem('hitokoto');
+      const cachedAuthor = localStorage.getItem('hitokoto_author');
+      const cacheTime = localStorage.getItem('hitokoto_time');
+      const now = Date.now();
+      const cacheDuration = 3600000;
 
-    if (cachedHitokoto && cacheTime && (now - parseInt(cacheTime, 10)) < cacheDuration) {
-      hitokotoText.textContent = cachedHitokoto;
+      if (cachedHitokoto && cacheTime && (now - parseInt(cacheTime, 10)) < cacheDuration) {
+        hitokotoText.textContent = cachedHitokoto;
+        hitokotoText.style.opacity = '1';
+        if (cachedAuthor && hitokotoAuthor) {
+          hitokotoAuthor.textContent = cachedAuthor;
+        }
+        return;
+      }
+
+      const quote = getRandomHitokoto();
+      hitokotoText.textContent = quote.text;
       hitokotoText.style.opacity = '1';
-      if (cachedAuthor && hitokotoAuthor) {
-        hitokotoAuthor.textContent = cachedAuthor;
+      localStorage.setItem('hitokoto', quote.text);
+      localStorage.setItem('hitokoto_time', now.toString());
+      if (quote.author && hitokotoAuthor) {
+        hitokotoAuthor.textContent = '—— ' + quote.author;
+        localStorage.setItem('hitokoto_author', '—— ' + quote.author);
       }
     }
-
-    fetch('https://v1.hitokoto.cn/?c=a&c=b&c=c&c=d&c=e&c=f&c=g', {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json'
-      },
-      timeout: 5000
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        if (data && data.hitokoto) {
-          hitokotoText.textContent = data.hitokoto;
-          hitokotoText.style.opacity = '1';
-          localStorage.setItem('hitokoto', data.hitokoto);
-          localStorage.setItem('hitokoto_time', now.toString());
-          if (data.from && hitokotoAuthor) {
-            hitokotoAuthor.textContent = '—— ' + data.from;
-            localStorage.setItem('hitokoto_author', '—— ' + data.from);
-          }
-        }
-      })
-      .catch(error => {
-        console.error('Failed to load hitokoto:', error);
-      });
   }
   loadHitokoto();
 
@@ -326,5 +308,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
+
 </body>
 </html>
