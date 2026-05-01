@@ -28,35 +28,37 @@ jobs:
       - name: Build Hugo site
         run: hugo --minify
 
-      - name: Install IPFS
-        run: |
-          curl -L https://dist.ipfs.tech/kubo/v0.28.0/kubo_v0.28.0_linux-amd64.tar.gz -o /tmp/kubo.tar.gz
-          tar -xzf /tmp/kubo.tar.gz -C /tmp
-          sudo mv /tmp/kubo/ipfs /usr/local/bin/
-          ipfs init
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-      - name: Add files to IPFS and get CID
-        id: ipfs-add
+      - name: Install ipfs-car
+        run: npm install -g ipfs-car
+
+      - name: Create CAR file from public directory
         run: |
           cd public
-          CID=$(ipfs add -rQ .)
-          echo "directory_cid=$CID" >> $GITHUB_OUTPUT
-          echo "📦 Directory CID: $CID"
+          ipfs-car pack . --output ../site.car
+          ls -la ../site.car
 
-      - name: Pin to Pinata
+      - name: Deploy to Pinata
         run: |
-          RESPONSE=$(curl -s -X POST "https://api.pinata.cloud/pinning/pinByHash" \
-            -H "Content-Type: application/json" \
+          RESPONSE=$(curl -s -X POST "https://api.pinata.cloud/pinning/pinFileToIPFS" \
             -H "Authorization: Bearer ${{ secrets.PINATA_JWT_TOKEN }}" \
-            -d "{\"hashToPin\": \"${{ steps.ipfs-add.outputs.directory_cid }}\"}")
+            -F "file=@site.car")
+          
+          echo "Response: $RESPONSE"
           
           if echo "$RESPONSE" | grep -q "IpfsHash"; then
-            echo "✅ Successfully pinned to Pinata!"
+            CID=$(echo "$RESPONSE" | grep -o '"IpfsHash":"[^"]*' | cut -d'"' -f4)
+            echo "✅ Successfully deployed to IPFS!"
+            echo "CID: $CID"
+            echo ""
             echo "🌐 Access your site at:"
-            echo "https://gateway.pinata.cloud/ipfs/${{ steps.ipfs-add.outputs.directory_cid }}/"
-            echo "https://ipfs.io/ipfs/${{ steps.ipfs-add.outputs.directory_cid }}/"
-            echo "https://cloudflare-ipfs.com/ipfs/${{ steps.ipfs-add.outputs.directory_cid }}/"
+            echo "https://gateway.pinata.cloud/ipfs/$CID/"
+            echo "https://ipfs.io/ipfs/$CID/"
           else
-            echo "❌ Failed: $RESPONSE"
+            echo "❌ Deployment failed!"
             exit 1
           fi
