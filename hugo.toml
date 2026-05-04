@@ -7,10 +7,10 @@ relativeURLs = true
 uglyURLs = false
 
 [params]
-  description = "极简，新中式，博客，技术，随想"
+  description = "博客，技术，随想，极简，新中式"
   author = "太一"
-  paginate = 4
-  keywords = ["博客", "技术", "极简", "新中式", "随笔", "思考"]
+  paginate = 6
+  keywords = ["博客", "技术", "随笔", "思考", "极简", "新中式"]
 
 [taxonomies]
   tag = "tags"
