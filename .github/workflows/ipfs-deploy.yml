@@ -1,4 +1,4 @@
-name: Deploy to IPFS with NFT.storage
+name: Deploy to IPFS with Lighthouse
 
 on:
   push:
@@ -28,40 +28,31 @@ jobs:
       - name: Build Hugo site
         run: hugo --minify
 
-      - name: Deploy to NFT.storage
+      - name: Install Node.js and Lighthouse SDK
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install @lighthouse-web3/sdk
+
+      - name: Deploy to Lighthouse
         env:
-          NFT_STORAGE_TOKEN: ${{ secrets.NFT_STORAGE_TOKEN }}
+          LIGHTHOUSE_API_KEY: ${{ secrets.LIGHTHOUSE_API_KEY }}
         run: |
-          # 安装 Kubo
-          wget https://github.com/ipfs/kubo/releases/download/v0.28.0/kubo_v0.28.0_linux-amd64.tar.gz
-          tar xzf kubo_v0.28.0_linux-amd64.tar.gz
-          sudo cp kubo/ipfs /usr/local/bin/
+          node << 'END_SCRIPT'
+          const lighthouse = require('@lighthouse-web3/sdk');
+          
+          const apiKey = process.env.LIGHTHOUSE_API_KEY;
+          if (!apiKey) {
+            console.error('❌ LIGHTHOUSE_API_KEY not set');
+            process.exit(1);
+          }
 
-          # 初始化 IPFS
-          ipfs init
+          const directoryPath = './public';
 
-          # 添加目录到 IPFS 并获取 CID
-          cd public
-          CID=$(ipfs add -r -Q .)
-          cd ..
+          const uploadResponse = await lighthouse.upload(directoryPath, apiKey);
 
-          echo "📦 Directory CID: $CID"
-          echo "📤 Exporting CAR file..."
-
-          # 导出为 CAR 文件
-          ipfs dag export $CID > site.car
-
-          echo "📤 Uploading to NFT.storage..."
-
-          # 上传到 NFT.storage
-          RESPONSE=$(curl -X POST "https://api.nft.storage/upload" \
-            -H "Authorization: Bearer $NFT_STORAGE_TOKEN" \
-            -H "Content-Type: application/vnd.ipld.car" \
-            --data-binary "@site.car")
-
-          echo "📥 Response: $RESPONSE"
-
-          echo "✅ Success!"
-          echo "CID: $CID"
-          echo "🌐 Access: https://ipfs.io/ipfs/$CID/"
-          echo "🌐 NFT.storage Gateway: https://$CID.ipfs.nftstorage.link/"
+          console.log('✅ Success!');
+          console.log('CID:', uploadResponse.data.Hash);
+          console.log('🌐 Access: https://gateway.lighthouse.storage/ipfs/' + uploadResponse.data.Hash + '/');
+          console.log('🌐 Backup: https://ipfs.io/ipfs/' + uploadResponse.data.Hash + '/');
+          END_SCRIPT
