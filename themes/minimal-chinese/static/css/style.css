@@ -792,6 +792,28 @@ footer {
   z-index: 2;
 }
 
+.icp-badge {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.85rem;
+  color: var(--ink-gray);
+  text-decoration: none;
+  border: 1px solid var(--warm-border);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, var(--cream-bg) 0%, var(--paper-white) 100%);
+  position: relative;
+  z-index: 1;
+}
+
+.icp-badge:hover {
+  border-color: var(--vermillion-red);
+  color: var(--vermillion-red);
+  background: linear-gradient(135deg, rgba(194, 59, 34, 0.05) 0%, var(--paper-white) 100%);
+  box-shadow: 0 2px 8px rgba(194, 59, 34, 0.15);
+}
+
 @media (max-width: 768px) {
   header {
     padding: 1rem 0;
