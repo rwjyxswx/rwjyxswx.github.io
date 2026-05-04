@@ -28,31 +28,30 @@ jobs:
       - name: Build Hugo site
         run: hugo --minify
 
-      - name: Install Node.js and Lighthouse SDK
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm install @lighthouse-web3/sdk
-
       - name: Deploy to Lighthouse
         env:
           LIGHTHOUSE_API_KEY: ${{ secrets.LIGHTHOUSE_API_KEY }}
         run: |
-          node << 'END_SCRIPT'
-          const lighthouse = require('@lighthouse-web3/sdk');
-          
-          const apiKey = process.env.LIGHTHOUSE_API_KEY;
-          if (!apiKey) {
-            console.error('❌ LIGHTHOUSE_API_KEY not set');
+          node --input-type=module << 'END_SCRIPT'
+          import('@lighthouse-web3/sdk').then(async (lighthouseModule) => {
+            const lighthouse = lighthouseModule.default;
+            
+            const apiKey = process.env.LIGHTHOUSE_API_KEY;
+            if (!apiKey) {
+              console.error('❌ LIGHTHOUSE_API_KEY not set');
+              process.exit(1);
+            }
+
+            const directoryPath = './public';
+
+            const uploadResponse = await lighthouse.upload(directoryPath, apiKey);
+
+            console.log('✅ Success!');
+            console.log('CID:', uploadResponse.data.Hash);
+            console.log('🌐 Access: https://gateway.lighthouse.storage/ipfs/' + uploadResponse.data.Hash + '/');
+            console.log('🌐 Backup: https://ipfs.io/ipfs/' + uploadResponse.data.Hash + '/');
+          }).catch((err) => {
+            console.error('❌ Failed:', err);
             process.exit(1);
-          }
-
-          const directoryPath = './public';
-
-          const uploadResponse = await lighthouse.upload(directoryPath, apiKey);
-
-          console.log('✅ Success!');
-          console.log('CID:', uploadResponse.data.Hash);
-          console.log('🌐 Access: https://gateway.lighthouse.storage/ipfs/' + uploadResponse.data.Hash + '/');
-          console.log('🌐 Backup: https://ipfs.io/ipfs/' + uploadResponse.data.Hash + '/');
+          });
           END_SCRIPT
