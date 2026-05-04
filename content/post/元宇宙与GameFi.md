@@ -1,7 +1,7 @@
 
 ---
 title: "元宇宙与GameFi"
-date: 2026-03-07
+date: "2026-03-07T14:14:00+08:00"
 tags: ["Web3", "元宇宙"]
 draft: false
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Web3是什么"
-date: 2026-02-01
+date: "2026-02-01T14:14:00+08:00"
 tags: ["Web3", "区块链"]
 draft: false
 ---

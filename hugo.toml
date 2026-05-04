@@ -1,10 +1,8 @@
 baseURL = ""
-languageCode = "zh-CN"
 title = "弥罗"
 theme = "minimal-chinese"
 defaultContentLanguage = "zh-cn"
 enableRobotsTXT = true
-googleAnalytics = ""
 relativeURLs = true
 uglyURLs = false
 
@@ -28,4 +26,10 @@ uglyURLs = false
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
-      unsafe = false
+      unsafe = true
+
+[languages]
+  [languages.zh-cn]
+    languageCode = "zh-CN"
+    languageName = "Chinese"
+    weight = 1

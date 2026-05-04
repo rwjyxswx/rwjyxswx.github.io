@@ -1,6 +1,6 @@
 ---
 title: "Layer2与跨链"
-date: 2026-03-06
+date: "2026-03-06T14:14:00+08:00"
 tags: ["Web3", "区块链"]
 draft: false
 ---

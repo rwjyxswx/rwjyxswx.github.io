@@ -2,18 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>NFT on 弥罗</title>
-    <link>//localhost:1313/tags/nft/</link>
+    <link>/tags/nft/</link>
     <description>Recent content in NFT on 弥罗</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 18 Feb 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="//localhost:1313/tags/nft/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 28 Feb 2026 14:14:00 +0800</lastBuildDate>
+    <atom:link href="/tags/nft/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>数字身份</title>
+      <link>/post/2026/02/28/%E6%95%B0%E5%AD%97%E8%BA%AB%E4%BB%BD/</link>
+      <pubDate>Sat, 28 Feb 2026 14:14:00 +0800</pubDate>
+      <guid>/post/2026/02/28/%E6%95%B0%E5%AD%97%E8%BA%AB%E4%BB%BD/</guid>
+      <description>&lt;p&gt;在Web3的世界里，数字身份是一个基础但又极其重要的议题。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>NFT</title>
-      <link>//localhost:1313/post/2026/02/18/nft/</link>
-      <pubDate>Wed, 18 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/post/2026/02/18/nft/</guid>
-      <description>&lt;h1 id=&#34;第05章-nft-数字资产的所有权革命&#34;&gt;第05章 NFT： 数字资产的所有权革命&lt;/h1&gt;&#xA;&lt;p&gt;NFT（非同质化代币）是Web3世界中最具视觉冲击力和最容易被大众理解的创新。从2021年的&amp;quot;加密艺术&amp;quot;热潮到2026年的多元化应用，NFT已经完成了从&amp;quot;昂贵的像素图片&amp;quot;到&amp;quot;数字资产所有权标准协议&amp;quot;的华丽转身。在本章中，我们将深入探讨NFT的技术原理、分类体系、NFT-Fi金融化，以及半同质化代币等关键议题。&lt;/p&gt;&#xA;&lt;h2 id=&#34;51-nft的核心定义为什么不可替代&#34;&gt;5.1 NFT的核心定义：为什么&amp;quot;不可替代&amp;quot;？&lt;/h2&gt;&#xA;&lt;h3 id=&#34;511-从同质化到非同质化&#34;&gt;5.1.1 从同质化到非同质化&lt;/h3&gt;&#xA;&lt;p&gt;理解NFT的第一步，是理解它的兄弟概念——同质化代币（Fungible Token，FT）。&lt;/p&gt;&#xA;&lt;p&gt;**同质化代币（FT）**的特点是每个单位都完全相同，可以互换，也可以任意拆分。比如1个比特币和另一个1个比特币完全等价，1个ETH可以拆分成0.1个ETH。它们就像纸币——每一张100元人民币的价值都是一样的，可以互相交换。&lt;/p&gt;&#xA;&lt;p&gt;**非同质化代币（NFT）**则相反，每一个代币都是独一无二的，无法互相替换。就像电影票——虽然都是&amp;quot;电影票&amp;quot;，但座位号、场次、日期不同就不能互换。NFT的不可替代性来自于每个代币都有唯一的ID，这个ID在区块链上被永久记录。&lt;/p&gt;&#xA;&lt;h3 id=&#34;512-nft的技术标准&#34;&gt;5.1.2 NFT的技术标准&lt;/h3&gt;&#xA;&lt;p&gt;NFT的核心标准是ERC-721，这是以太坊上定义非同质化代币的技术规范。&lt;/p&gt;&#xA;&lt;p&gt;ERC-721定义了NFT合约必须实现的基本接口：tokenByIndex用于通过索引查询代币、ownerOf用于查询代币的持有者、transferFrom用于转移代币所有权、approve和setApprovalForAll用于授权第三方管理等。&lt;/p&gt;&#xA;&lt;p&gt;每个NFT都有几个关键属性：tokenId是代币的唯一标识符，metadata是描述代币的元数据（通常存储在链下），owner是当前持有者的地址。NFT的元数据通常包含名称、描述、图片URL等。&lt;/p&gt;&#xA;&lt;h3 id=&#34;513-nft如何存储数据&#34;&gt;5.1.3 NFT如何存储数据？&lt;/h3&gt;&#xA;&lt;p&gt;NFT的&amp;quot;元数据&amp;quot;（图片、视频等）并不存储在区块链上——那太昂贵了。实际上，NFT合约只存储一个指向外部资源的链接（URI）。这个链接指向IPFS、Arweave或传统云存储上的JSON文件，JSON文件再指向实际的图片或视频。&lt;/p&gt;&#xA;&lt;p&gt;这种方式有其优缺点。优点是链上存储成本低，缺点是如果外部服务器宕机或链接失效，NFT的图片可能无法显示。这就是为什么成熟的NFT项目通常使用IPFS或Arweave来存储元数据——它们是去中心化的，只要网络中有节点存储，数据就不会丢失。&lt;/p&gt;&#xA;&lt;h2 id=&#34;52-2026年nft的演进形态&#34;&gt;5.2 2026年NFT的演进形态&lt;/h2&gt;&#xA;&lt;p&gt;到2026年，NFT已经进化出了多种更具功能性的形态。&lt;/p&gt;&#xA;&lt;h3 id=&#34;521-动态nftdnft&#34;&gt;5.2.1 动态NFT（dNFT）&lt;/h3&gt;&#xA;&lt;p&gt;传统的NFT是静态的——铸造后就不会改变。动态NFT（Dynamic NFT，dNFT）会根据外部数据自动改变。&lt;/p&gt;&#xA;&lt;p&gt;以游戏场景为例：一个虚拟球员NFT，其属性（速度、力量、投篮准确度）会根据该球员在现实比赛中的表现自动更新。如果球员进球了，NFT的属性值会提升，外观也可能发生变化。这种NFT被称为&amp;quot;链上游戏资产&amp;quot;，因为它们的状态完全由智能合约控制。&lt;/p&gt;&#xA;&lt;p&gt;动态NFT的实现依赖于预言机。Chainlink等预言机网络可以将链外数据（如现实世界的比赛结果、天气信息、股票价格）传输到链上，触发NFT属性的变化。&lt;/p&gt;&#xA;&lt;h3 id=&#34;522-可组合nfterc-6551&#34;&gt;5.2.2 可组合NFT（ERC-6551）&lt;/h3&gt;&#xA;&lt;p&gt;ERC-6551（代币绑定账户）是2026年最重要的NFT技术创新之一。它让每个NFT本身就变成了一个&amp;quot;钱包&amp;quot;。&lt;/p&gt;&#xA;&lt;p&gt;传统的NFT只是一个代币——你持有它，但它不能&amp;quot;持有&amp;quot;其他东西。ERC-6551改变了这一点。你的游戏角色NFT可以&amp;quot;穿戴&amp;quot;衣服NFT、&amp;ldquo;持有&amp;quot;宝剑NFT。当你出售角色时，所有装备都随之整体转让。&lt;/p&gt;&#xA;&lt;p&gt;这模拟了现实世界的情况——你卖掉一辆车，车上的所有配件也会一起卖掉。ERC-6551让NFT真正具备了&amp;quot;资产容器&amp;quot;的特性。&lt;/p&gt;&#xA;&lt;h3 id=&#34;523-灵魂绑定代币sbt&#34;&gt;5.2.3 灵魂绑定代币（SBT）&lt;/h3&gt;&#xA;&lt;p&gt;灵魂绑定代币（Soul-Bound Token，SBT）是一种不可转让的NFT。在Web3语境中，SBT代表你的学历、技能勋章、链上信用记录等与身份绑定的凭证。&lt;/p&gt;&#xA;&lt;p&gt;SBT的概念来源于游戏中的&amp;quot;灵魂绑定&amp;quot;机制——某些装备一旦绑定就无法交易。应用到Web3中，SBT可以承载：教育经历（毕业证书）、工作经历（任职证明）、技能认证（完成某个课程）、信用记录（还款历史）等。&lt;/p&gt;&#xA;&lt;p&gt;SBT是去中心化社会（DeSoc）的基础设施。它让人们可以在链上积累&amp;quot;声誉&amp;rdquo;，而这些声誉无法被购买，只能通过实际行为获得。&lt;/p&gt;&#xA;&lt;h3 id=&#34;524-现实资产nftrwa&#34;&gt;5.2.4 现实资产NFT（RWA）&lt;/h3&gt;&#xA;&lt;p&gt;NFT正在将现实世界的资产带入Web3。房产契约、名贵红酒、车辆租赁权等都可以被铸造为NFT，实现24小时全球交易。&lt;/p&gt;&#xA;&lt;p&gt;这种&amp;quot;现实资产NFT化&amp;quot;的意义在于：传统资产的交易需要复杂的法律流程和中介服务，涉及大量的摩擦成本。NFT化后，资产可以像加密货币一样快速流转——当然，这需要法律框架的配套支持。&lt;/p&gt;&#xA;&lt;h2 id=&#34;53-nft的分类体系&#34;&gt;5.3 NFT的分类体系&lt;/h2&gt;&#xA;&lt;p&gt;根据2026年的市场应用，NFT可以分为以下五大核心类别。&lt;/p&gt;&#xA;&lt;h3 id=&#34;531-身份与社交类nft&#34;&gt;5.3.1 身份与社交类NFT&lt;/h3&gt;&#xA;&lt;p&gt;这是Web3社交的基石，解决&amp;quot;你是谁&amp;quot;和&amp;quot;你属于哪个圈子&amp;quot;的问题。&lt;/p&gt;&#xA;&lt;p&gt;**PFP（头像类）**是最常见的身份NFT。CryptoPunks、Bored Ape Yacht Club、Pudgy Penguins都是典型的PFP项目。2026年的PFP多具备3D模型，可以直接作为元宇宙中的Avatar使用。&lt;/p&gt;&#xA;&lt;p&gt;**SBT（灵魂绑定代币）**是不可转让的身份凭证。用于承载学历、链上信用评分、技能认证等。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;域名称&lt;/strong&gt;（如ENS的.eth域名或SNS的.sol域名）不仅是钱包地址的别名，更是你在全链上的&amp;quot;数字工牌&amp;quot;。&lt;/p&gt;&#xA;&lt;h3 id=&#34;532-实用与权限类nft&#34;&gt;5.3.2 实用与权限类NFT&lt;/h3&gt;&#xA;&lt;p&gt;NFT在2026年被广泛视为&amp;quot;数字钥匙&amp;quot;。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;门票与票务&lt;/strong&gt;是实用NFT的典型应用。演唱会、体育赛事的门票NFT化，杜绝了假票问题，并支持二次销售的透明分成。演出结束后，门票可以自动变成带有珍贵现场视频的收藏品（POAP）。&lt;/p&gt;&#xA;&lt;p&gt;**通行证（Passes）**持有特定NFT即可进入封闭的Discord频道、DAO治理中心，或获取特定的软件服务（SaaS）。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;品牌忠诚度/会员卡&lt;/strong&gt;是传统品牌进入Web3的入口。星巴克、耐克等大厂发行的NFT会员，根据持有时间自动&amp;quot;升级&amp;quot;权益。&lt;/p&gt;&#xA;&lt;h3 id=&#34;533-游戏与元宇宙资产nft&#34;&gt;5.3.3 游戏与元宇宙资产NFT&lt;/h3&gt;&#xA;&lt;p&gt;这是交易频率最高、功能最复杂的类别，已进入&amp;quot;Play-and-Own&amp;quot;（玩并拥有）阶段。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;游戏装备&lt;/strong&gt;（SFT/NFT）是武器、皮肤、坐骑等游戏道具。通过ERC-6551，游戏角色NFT可以像真实口袋一样&amp;quot;装入&amp;quot;这些装备。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;虚拟土地&lt;/strong&gt;在Decentraland、The Sandbox或Otherdeed中持有地块，可用于租赁、广告展示或开发应用。&lt;/p&gt;</description>
+      <link>/post/2026/02/18/nft/</link>
+      <pubDate>Wed, 18 Feb 2026 14:14:00 +0800</pubDate>
+      <guid>/post/2026/02/18/nft/</guid>
+      <description>&lt;p&gt;NFT（非同质化代币）是Web3世界中最具视觉冲击力和最容易被大众理解的创新。从2021年的&amp;quot;加密艺术&amp;quot;热潮到2026年的多元化应用，NFT已经完成了从&amp;quot;昂贵的像素图片&amp;quot;到&amp;quot;数字资产所有权标准协议&amp;quot;的华丽转身。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

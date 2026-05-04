@@ -1,6 +1,6 @@
 ---
 title: "Web3投资指南"
-date: 2026-03-12
+date: "2026-03-12T14:14:00+08:00"
 tags: ["Web3"]
 draft: false
 ---
