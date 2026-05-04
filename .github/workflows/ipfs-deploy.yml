@@ -1,63 +1,48 @@
-name: Deploy to IPFS
+name: Deploy to IPFS + Pinata
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
-
-permissions:
-  contents: read
 
 jobs:
-  deploy-ipfs:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          submodules: true
-          fetch-depth: 0
+      - uses: actions/checkout@v3
 
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: '0.161.0'
-          extended: true
+      - name: Install Hugo
+        run: sudo apt-get install hugo -y
 
-      - name: Build Hugo site
+      - name: Build
         run: hugo --minify
 
+      # 安装 IPFS
       - name: Install IPFS
         run: |
-          curl -L https://dist.ipfs.tech/kubo/v0.28.0/kubo_v0.28.0_linux-amd64.tar.gz -o /tmp/kubo.tar.gz
-          tar -xzf /tmp/kubo.tar.gz -C /tmp
-          sudo mv /tmp/kubo/ipfs /usr/local/bin/
-          ipfs init --profile=lowpower
+          wget https://dist.ipfs.tech/kubo/latest/kubo_linux-amd64.tar.gz
+          tar -xvzf kubo_linux-amd64.tar.gz
+          cd kubo && sudo bash install.sh
 
-      - name: Add to IPFS and publish
-        id: ipfs-add
+      - name: Start IPFS
         run: |
-          cd public
-          CID=$(ipfs add -rQ .)
-          ipfs name publish $CID || true
-          echo "cid=$CID" >> $GITHUB_OUTPUT
-          echo "📦 Directory CID: $CID"
+          ipfs init
+          ipfs daemon & sleep 5
 
-      - name: Show results
+      # ✅ 关键：本地生成 CID（文件夹没问题）
+      - name: Add folder to IPFS
         run: |
-          echo ""
-          echo "✅ IPFS Deployment completed!"
-          echo ""
-          echo "🪐 Site CID: ${{ steps.ipfs-add.outputs.cid }}"
-          echo ""
-          echo "🌐 Access via gateways:"
-          echo "  • https://ipfs.io/ipfs/${{ steps.ipfs-add.outputs.cid }}/"
-          echo "  • https://cloudflare-ipfs.com/ipfs/${{ steps.ipfs-add.outputs.cid }}/"
-          echo "  • https://dweb.link/ipfs/${{ steps.ipfs-add.outputs.cid }}/"
-          echo ""
-          echo "💡 To ensure permanent availability:"
-          echo "  1. Copy the CID: ${{ steps.ipfs-add.outputs.cid }}"
-          echo "  2. Go to https://app.pinata.cloud/pinmanager"
-          echo "  3. Click 'Pin by CID' and paste the CID"
-          echo "  4. Done! Your site will be permanently available."
+          CID=$(ipfs add -Qr public)
+          echo "CID=$CID" >> $GITHUB_ENV
+
+      # ✅ 关键：让 Pinata 只 pin CID
+      - name: Pin CID to Pinata
+        run: |
+          curl -X POST "https://api.pinata.cloud/pinning/pinByHash" \
+          -H "Authorization: Bearer ${{ secrets.PINATA_JWT }}" \
+          -H "Content-Type: application/json" \
+          -d "{\"hashToPin\":\"$CID\"}"
+
+      - name: Output URL
+        run: echo "https://ipfs.io/ipfs/$CID"
