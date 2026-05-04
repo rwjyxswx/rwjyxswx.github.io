@@ -5,9 +5,8 @@ tags: ["Web3", "区块链"]
 draft: false
 ---
 
-# Layer2与跨链： Web3的可扩展性基础设施
 
-区块链的可扩展性是Web3大规模应用的关键。Layer2解决方案和跨链技术正是解决这一挑战的核心基础设施。今天说说OP Rollup与ZK Rollup、Layer2技术栈，以及Cosmos等跨链生态。
+区块链的可扩展性是Web3大规模应用的关键。Layer2解决方案和跨链技术正是解决这一挑战的核心基础设施。<!--more-->今天说说OP Rollup与ZK Rollup、Layer2技术栈，以及Cosmos等跨链生态。
 
 ## OP Rollup vs ZK Rollup
 

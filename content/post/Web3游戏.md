@@ -6,9 +6,8 @@ tags: ["Web3", "GameFi"]
 draft: false
 ---
 
-# Web3游戏： 全链游戏与自治世界
 
-今天我们将了解Web3游戏的最前沿领域：全链游戏（Fully On-chain Games）、自治世界（Autonomous Worlds），以及现在Web3游戏的技术架构与商业创新。
+今天我们将了解Web3游戏的最前沿领域：全链游戏（Fully On-chain Games）、自治世界（Autonomous Worlds），以及现在Web3游戏的技术架构与商业创新。<!--more-->
 
 如果说传统Web2游戏是"租借体验"，那么现在的Web3游戏正在实现"数字资产的真实持有"。游戏不再只是娱乐产品，而成为了可以积累数字资产的生产活动。
 

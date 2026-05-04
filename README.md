@@ -361,46 +361,9 @@ font-family: system-ui, -apple-system, BlinkMacSystemFont,
 - **主题切换**：支持明暗主题，自动保存用户偏好
 - **离线可用**：一言数据本地化，断网也能正常显示
 
-## 去中心化部署
+## 项目部署
 
-本项目已针对IPFS/Filecoin部署进行优化：
-
-
-### 部署方案对比
-
-| 方案 | 难度 | 成本 | 自动化 | 去中心化程度 | 推荐场景 |
-|------|------|------|--------|-------------|----------|
-| **Fleek.xyz** | ⭐ 简单 | 免费额度 | ✅ 完全自动 | ★★★☆☆ | 快速上线、不想折腾 |
-| **ipfs-deploy** | ⭐⭐ 中等 | 免费/付费 | ⚙️ 半自动 | ★★★★☆ | 技术用户、灵活控制 |
-| **GitHub Actions + IPFS** | ⭐⭐⭐ 较复杂 | 免费/付费 | ✅ 完全自动 | ★★★★☆ | 深度定制、完整控制 |
-| **手动上传IPFS** | ⭐⭐⭐ 较复杂 | 免费 | ❌ 手动 | ★★★★★ | 临时使用、测试 |
-
-### 方案1：Fleek.xyz（推荐新手）
-
-1. 注册 [Fleek.xyz](https://fleek.xyz/)
-2. 连接GitHub仓库
-3. 配置构建设置：
-   - Framework: Hugo
-   - Build command: `hugo --minify`
-   - Output directory: `public`
-4. 自动构建并部署到IPFS/Filecoin
-5. 自动绑定域名和SSL
-
-### 方案2：ipfs-deploy
-
-```bash
-# 安装
-npm install -g ipfs-deploy
-
-# 配置环境变量（使用Pinata）
-export IPFS_DEPLOY_PINATA__API_KEY=your_api_key
-export IPFS_DEPLOY_PINATA__SECRET_API_KEY=your_secret_key
-
-# 部署
-hugo --minify && ipd
-```
-
-### 方案3：GitHub Actions + Pinata
+### GitHub Actions
 
 在 `.github/workflows/` 中添加IPFS部署工作流。
 
@@ -648,7 +611,6 @@ MIT License
 ### 部署平台
 - [GitHub Pages](https://pages.github.com/) - 免费静态网站托管
 - [GitHub Actions](https://github.com/features/actions) - 自动化CI/CD
-- [Fleek](https://fleek.xyz/) - IPFS/Filecoin部署平台
 
 ### 开源社区
 - 感谢所有开源贡献者

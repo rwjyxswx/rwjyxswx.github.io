@@ -6,9 +6,8 @@ tags: ["Web3", "元宇宙"]
 draft: false
 ---
 
-# 元宇宙与GameFi： Web3的虚拟世界
 
-元宇宙和GameFi代表了Web3在虚拟世界和游戏领域的前沿探索。今天我们来探讨Metaverse、Avatar、GameFi，以及Web3游戏的经济模型。
+元宇宙和GameFi代表了Web3在虚拟世界和游戏领域的前沿探索。<!--more-->今天我们来探讨Metaverse、Avatar、GameFi，以及Web3游戏的经济模型。
 
 ## 元宇宙的概念与演进
 
