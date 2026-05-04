@@ -28,57 +28,39 @@ jobs:
       - name: Build Hugo site
         run: hugo --minify
 
-      - name: Install Node.js and NFT.storage SDK
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm install nft.storage
-
       - name: Deploy to NFT.storage
         env:
           NFT_STORAGE_TOKEN: ${{ secrets.NFT_STORAGE_TOKEN }}
         run: |
-          node << 'END_SCRIPT'
-          const { NFTStorage, File } = require('nft.storage');
-          const fs = require('fs');
-          const path = require('path');
+          # 安装 ipfs-car
+          npm install -g ipfs-car
 
-          const token = process.env.NFT_STORAGE_TOKEN;
-          if (!token) {
-            console.error('❌ NFT_STORAGE_TOKEN not set');
-            process.exit(1);
-          }
+          # 创建 CAR 文件并获取 CID
+          ipfs-car --pack public --output site.car
 
-          const client = new NFTStorage({ token });
+          # 获取 CID（ipfs-car 会输出 CID）
+          # 另一种方法：用 kubo 直接计算
+          wget https://github.com/ipfs/kubo/releases/download/v0.28.0/kubo_v0.28.0_linux-amd64.tar.gz
+          tar xzf kubo_v0.28.0_linux-amd64.tar.gz
+          sudo cp kubo/ipfs /usr/local/bin/
 
-          function filesFromPath(dirPath) {
-              const files = [];
-              function traverse(currentPath, basePath = '') {
-                  const items = fs.readdirSync(currentPath);
-                  for (const item of items) {
-                      const fullPath = path.join(currentPath, item);
-                      const relativePath = path.join(basePath, item);
-                      if (fs.statSync(fullPath).isDirectory()) {
-                          traverse(fullPath, relativePath);
-                      } else {
-                          const content = fs.readFileSync(fullPath);
-                          files.push(new File([content], relativePath));
-                      }
-                  }
-              }
-              traverse(dirPath);
-              return files;
-          }
+          ipfs init
+          cd public
+          CID=$(ipfs add -r -Q .)
+          cd ..
 
-          const files = filesFromPath('public');
+          echo "📦 Directory CID: $CID"
+          echo "📤 Uploading to NFT.storage..."
 
-          client.storeDirectory(files).then((cid) => {
-              console.log('✅ Success!');
-              console.log('CID:', cid);
-              console.log('🌐 Access: https://ipfs.io/ipfs/' + cid + '/');
-              console.log('🌐 NFT.storage Gateway: https://' + cid + '.ipfs.nftstorage.link/');
-          }).catch((err) => {
-              console.error('❌ Failed:', err);
-              process.exit(1);
-          });
-          END_SCRIPT
+          # 上传 CAR 文件
+          RESPONSE=$(curl -X POST "https://api.nft.storage/upload" \
+            -H "Authorization: Bearer $NFT_STORAGE_TOKEN" \
+            -H "Content-Type: application/vnd.ipld.car" \
+            --data-binary "@site.car")
+
+          echo "📥 Response: $RESPONSE"
+
+          echo "✅ Success!"
+          echo "CID: $CID"
+          echo "🌐 Access: https://ipfs.io/ipfs/$CID/"
+          echo "🌐 NFT.storage Gateway: https://$CID.ipfs.nftstorage.link/"
