@@ -1,40 +1,49 @@
-name: Deploy to IPFS + Pinata
+name: Deploy to IPFS
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
-  deploy:
+  deploy-ipfs:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
 
-      - name: Install Hugo
-        run: sudo apt-get install hugo -y
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.161.0'
+          extended: true
 
-      - name: Build
+      - name: Build Hugo site
         run: hugo --minify
 
-      # 安装 IPFS
       - name: Install IPFS
         run: |
-          wget https://github.com/ipfs/kubo/releases/download/v0.28.0/kubo_v0.28.0_linux-amd64.tar.gz
-          tar -xvzf kubo_v0.28.0_linux-amd64.tar.gz
-          cd kubo_v0.28.0 && sudo bash install.sh
+          curl -L https://github.com/ipfs/kubo/releases/download/v0.28.0/kubo_v0.28.0_linux-amd64.tar.gz -o /tmp/kubo.tar.gz
+          mkdir -p /tmp/kubo-extracted
+          tar -xzf /tmp/kubo.tar.gz -C /tmp/kubo-extracted --strip-components=1
+          sudo cp /tmp/kubo-extracted/ipfs /usr/local/bin/
+          ipfs init --profile=lowpower
 
-      - name: Start IPFS
+      - name: Add files to IPFS
+        id: ipfs-add
         run: |
-          ipfs init
-          ipfs daemon & sleep 5
+          cd public
+          CID=$(ipfs add -rQ .)
+          echo "cid=$CID" >> $GITHUB_OUTPUT
+          echo "📦 Directory CID: $CID"
 
-      # ✅ 关键：本地生成 CID（文件夹没问题）
-      - name: Add folder to IPFS
-        run: |
-          CID=$(ipfs add -Qr public)
-          echo "CID=$CID" >> $GITHUB_ENV
 
       # ✅ 关键：让 Pinata 只 pin CID
       - name: Pin CID to Pinata
@@ -46,3 +55,18 @@ jobs:
 
       - name: Output URL
         run: echo "https://ipfs.io/ipfs/$CID"
+
+        
+      - name: Show results
+        run: |
+          echo ""
+          echo "✅ IPFS Deployment completed!"
+          echo ""
+          echo "🪐 Site CID: ${{ steps.ipfs-add.outputs.cid }}"
+          echo ""
+          echo "🌐 Access via gateways:"
+          echo "  • https://ipfs.io/ipfs/${{ steps.ipfs-add.outputs.cid }}/"
+          echo "  • https://cloudflare-ipfs.com/ipfs/${{ steps.ipfs-add.outputs.cid }}/"
+          echo "  • https://dweb.link/ipfs/${{ steps.ipfs-add.outputs.cid }}/"
+          echo ""
+          echo "💡 To ensure permanent availability, pin this CID to Pinata or other pinning service."
