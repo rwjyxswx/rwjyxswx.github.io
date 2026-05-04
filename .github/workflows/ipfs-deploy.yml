@@ -28,21 +28,57 @@ jobs:
       - name: Build Hugo site
         run: hugo --minify
 
-      - name: Install Node.js
+      - name: Install Node.js and NFT.storage SDK
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
-      - name: Install w3cli
-        run: npm install -g @web3-storage/w3cli
+      - run: npm install nft.storage
 
       - name: Deploy to NFT.storage
         env:
           NFT_STORAGE_TOKEN: ${{ secrets.NFT_STORAGE_TOKEN }}
         run: |
-          cd public
-          w3 up --no-wrap
-          
-          echo ""
-          echo "✅ Successfully deployed to IPFS!"
-          echo "🌐 Your site is now available on the IPFS network."
+          node << 'END_SCRIPT'
+          const { NFTStorage, File } = require('nft.storage');
+          const fs = require('fs');
+          const path = require('path');
+
+          const token = process.env.NFT_STORAGE_TOKEN;
+          if (!token) {
+            console.error('❌ NFT_STORAGE_TOKEN not set');
+            process.exit(1);
+          }
+
+          const client = new NFTStorage({ token });
+
+          function filesFromPath(dirPath) {
+              const files = [];
+              function traverse(currentPath, basePath = '') {
+                  const items = fs.readdirSync(currentPath);
+                  for (const item of items) {
+                      const fullPath = path.join(currentPath, item);
+                      const relativePath = path.join(basePath, item);
+                      if (fs.statSync(fullPath).isDirectory()) {
+                          traverse(fullPath, relativePath);
+                      } else {
+                          const content = fs.readFileSync(fullPath);
+                          files.push(new File([content], relativePath));
+                      }
+                  }
+              }
+              traverse(dirPath);
+              return files;
+          }
+
+          const files = filesFromPath('public');
+
+          client.storeDirectory(files).then((cid) => {
+              console.log('✅ Success!');
+              console.log('CID:', cid);
+              console.log('🌐 Access: https://ipfs.io/ipfs/' + cid + '/');
+              console.log('🌐 NFT.storage Gateway: https://' + cid + '.ipfs.nftstorage.link/');
+          }).catch((err) => {
+              console.error('❌ Failed:', err);
+              process.exit(1);
+          });
+          END_SCRIPT
