@@ -1,4 +1,4 @@
-name: Deploy to IPFS
+name: Deploy to IPFS with NFT.storage
 
 on:
   push:
@@ -28,45 +28,21 @@ jobs:
       - name: Build Hugo site
         run: hugo --minify
 
-      - name: Install IPFS
-        run: |
-          curl -L https://github.com/ipfs/kubo/releases/download/v0.28.0/kubo_v0.28.0_linux-amd64.tar.gz -o /tmp/kubo.tar.gz
-          mkdir -p /tmp/kubo-extracted
-          tar -xzf /tmp/kubo.tar.gz -C /tmp/kubo-extracted --strip-components=1
-          sudo cp /tmp/kubo-extracted/ipfs /usr/local/bin/
-          ipfs init --profile=lowpower
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-      - name: Add files to IPFS
-        id: ipfs-add
+      - name: Install w3cli
+        run: npm install -g @web3-storage/w3cli
+
+      - name: Deploy to NFT.storage
+        env:
+          NFT_STORAGE_TOKEN: ${{ secrets.NFT_STORAGE_TOKEN }}
         run: |
           cd public
-          CID=$(ipfs add -rQ .)
-          echo "cid=$CID" >> $GITHUB_OUTPUT
-          echo "📦 Directory CID: $CID"
-
-
-      # ✅ 关键：让 Pinata 只 pin CID
-      - name: Pin CID to Pinata
-        run: |
-          curl -X POST "https://api.pinata.cloud/pinning/pinByHash" \
-          -H "Authorization: Bearer ${{ secrets.PINATA_JWT }}" \
-          -H "Content-Type: application/json" \
-          -d "{\"hashToPin\":\"$CID\"}"
-
-      - name: Output URL
-        run: echo "https://ipfs.io/ipfs/$CID"
-
-        
-      - name: Show results
-        run: |
+          w3 up --no-wrap
+          
           echo ""
-          echo "✅ IPFS Deployment completed!"
-          echo ""
-          echo "🪐 Site CID: ${{ steps.ipfs-add.outputs.cid }}"
-          echo ""
-          echo "🌐 Access via gateways:"
-          echo "  • https://ipfs.io/ipfs/${{ steps.ipfs-add.outputs.cid }}/"
-          echo "  • https://cloudflare-ipfs.com/ipfs/${{ steps.ipfs-add.outputs.cid }}/"
-          echo "  • https://dweb.link/ipfs/${{ steps.ipfs-add.outputs.cid }}/"
-          echo ""
-          echo "💡 To ensure permanent availability, pin this CID to Pinata or other pinning service."
+          echo "✅ Successfully deployed to IPFS!"
+          echo "🌐 Your site is now available on the IPFS network."
