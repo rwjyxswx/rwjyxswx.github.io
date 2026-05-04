@@ -28,6 +28,14 @@ jobs:
       - name: Build Hugo site
         run: hugo --minify
 
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Lighthouse SDK
+        run: npm install @lighthouse-web3/sdk
+
       - name: Deploy to Lighthouse
         env:
           LIGHTHOUSE_API_KEY: ${{ secrets.LIGHTHOUSE_API_KEY }}
