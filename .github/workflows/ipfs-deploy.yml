@@ -32,27 +32,28 @@ jobs:
         env:
           NFT_STORAGE_TOKEN: ${{ secrets.NFT_STORAGE_TOKEN }}
         run: |
-          # 安装 ipfs-car
-          npm install -g ipfs-car
-
-          # 创建 CAR 文件并获取 CID
-          ipfs-car --pack public --output site.car
-
-          # 获取 CID（ipfs-car 会输出 CID）
-          # 另一种方法：用 kubo 直接计算
+          # 安装 Kubo
           wget https://github.com/ipfs/kubo/releases/download/v0.28.0/kubo_v0.28.0_linux-amd64.tar.gz
           tar xzf kubo_v0.28.0_linux-amd64.tar.gz
           sudo cp kubo/ipfs /usr/local/bin/
 
+          # 初始化 IPFS
           ipfs init
+
+          # 添加目录到 IPFS 并获取 CID
           cd public
           CID=$(ipfs add -r -Q .)
           cd ..
 
           echo "📦 Directory CID: $CID"
+          echo "📤 Exporting CAR file..."
+
+          # 导出为 CAR 文件
+          ipfs dag export $CID > site.car
+
           echo "📤 Uploading to NFT.storage..."
 
-          # 上传 CAR 文件
+          # 上传到 NFT.storage
           RESPONSE=$(curl -X POST "https://api.nft.storage/upload" \
             -H "Authorization: Bearer $NFT_STORAGE_TOKEN" \
             -H "Content-Type: application/vnd.ipld.car" \
