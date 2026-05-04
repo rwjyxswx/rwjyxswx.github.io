@@ -21,9 +21,9 @@ jobs:
       # 安装 IPFS
       - name: Install IPFS
         run: |
-          wget https://dist.ipfs.tech/kubo/latest/kubo_linux-amd64.tar.gz
-          tar -xvzf kubo_linux-amd64.tar.gz
-          cd kubo && sudo bash install.sh
+          wget https://github.com/ipfs/kubo/releases/download/v0.28.0/kubo_v0.28.0_linux-amd64.tar.gz
+          tar -xvzf kubo_v0.28.0_linux-amd64.tar.gz
+          cd kubo_v0.28.0 && sudo bash install.sh
 
       - name: Start IPFS
         run: |
