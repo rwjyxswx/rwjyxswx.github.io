@@ -792,7 +792,7 @@ footer {
   z-index: 2;
 }
 
-.icp-badge {
+footer .footer-content a.icp-badge {
   display: inline-block;
   margin-top: 1rem;
   padding: 0.35rem 0.9rem;
@@ -807,7 +807,7 @@ footer {
   z-index: 1;
 }
 
-.icp-badge:hover {
+footer .footer-content a.icp-badge:hover {
   border-color: var(--vermillion-red);
   color: var(--vermillion-red);
   background: linear-gradient(135deg, rgba(194, 59, 34, 0.05) 0%, var(--paper-white) 100%);

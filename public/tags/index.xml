@@ -2,73 +2,73 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on 弥罗</title>
-    <link>/tags/</link>
+    <link>//localhost:1313/tags/</link>
     <description>Recent content in Tags on 弥罗</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Thu, 02 Apr 2026 14:14:00 +0800</lastBuildDate>
-    <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Web3</title>
-      <link>/tags/web3/</link>
+      <link>//localhost:1313/tags/web3/</link>
       <pubDate>Thu, 02 Apr 2026 14:14:00 +0800</pubDate>
-      <guid>/tags/web3/</guid>
+      <guid>//localhost:1313/tags/web3/</guid>
       <description></description>
     </item>
     <item>
       <title>加密货币</title>
-      <link>/tags/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</link>
+      <link>//localhost:1313/tags/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</link>
       <pubDate>Fri, 27 Mar 2026 14:14:00 +0800</pubDate>
-      <guid>/tags/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</guid>
+      <guid>//localhost:1313/tags/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</guid>
       <description></description>
     </item>
     <item>
       <title>GameFi</title>
-      <link>/tags/gamefi/</link>
+      <link>//localhost:1313/tags/gamefi/</link>
       <pubDate>Sat, 21 Mar 2026 14:14:00 +0800</pubDate>
-      <guid>/tags/gamefi/</guid>
+      <guid>//localhost:1313/tags/gamefi/</guid>
       <description></description>
     </item>
     <item>
       <title>区块链</title>
-      <link>/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</link>
+      <link>//localhost:1313/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</link>
       <pubDate>Sat, 21 Mar 2026 14:14:00 +0800</pubDate>
-      <guid>/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</guid>
+      <guid>//localhost:1313/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</guid>
       <description></description>
     </item>
     <item>
       <title>元宇宙</title>
-      <link>/tags/%E5%85%83%E5%AE%87%E5%AE%99/</link>
+      <link>//localhost:1313/tags/%E5%85%83%E5%AE%87%E5%AE%99/</link>
       <pubDate>Sat, 07 Mar 2026 14:14:00 +0800</pubDate>
-      <guid>/tags/%E5%85%83%E5%AE%87%E5%AE%99/</guid>
+      <guid>//localhost:1313/tags/%E5%85%83%E5%AE%87%E5%AE%99/</guid>
       <description></description>
     </item>
     <item>
       <title>NFT</title>
-      <link>/tags/nft/</link>
+      <link>//localhost:1313/tags/nft/</link>
       <pubDate>Sat, 28 Feb 2026 14:14:00 +0800</pubDate>
-      <guid>/tags/nft/</guid>
+      <guid>//localhost:1313/tags/nft/</guid>
       <description></description>
     </item>
     <item>
       <title>DAO</title>
-      <link>/tags/dao/</link>
+      <link>//localhost:1313/tags/dao/</link>
       <pubDate>Wed, 25 Feb 2026 14:14:00 +0800</pubDate>
-      <guid>/tags/dao/</guid>
+      <guid>//localhost:1313/tags/dao/</guid>
       <description></description>
     </item>
     <item>
       <title>DeFi</title>
-      <link>/tags/defi/</link>
+      <link>//localhost:1313/tags/defi/</link>
       <pubDate>Wed, 25 Feb 2026 14:14:00 +0800</pubDate>
-      <guid>/tags/defi/</guid>
+      <guid>//localhost:1313/tags/defi/</guid>
       <description></description>
     </item>
     <item>
       <title>智能合约</title>
-      <link>/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/</link>
+      <link>//localhost:1313/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/</link>
       <pubDate>Sat, 14 Feb 2026 14:14:00 +0800</pubDate>
-      <guid>/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/</guid>
+      <guid>//localhost:1313/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/</guid>
       <description></description>
     </item>
   </channel>

@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>NFT on 弥罗</title>
-    <link>/tags/nft/</link>
+    <link>//localhost:1313/tags/nft/</link>
     <description>Recent content in NFT on 弥罗</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 28 Feb 2026 14:14:00 +0800</lastBuildDate>
-    <atom:link href="/tags/nft/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//localhost:1313/tags/nft/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>数字身份</title>
-      <link>/post/2026/02/28/%E6%95%B0%E5%AD%97%E8%BA%AB%E4%BB%BD/</link>
+      <link>//localhost:1313/post/2026/02/28/%E6%95%B0%E5%AD%97%E8%BA%AB%E4%BB%BD/</link>
       <pubDate>Sat, 28 Feb 2026 14:14:00 +0800</pubDate>
-      <guid>/post/2026/02/28/%E6%95%B0%E5%AD%97%E8%BA%AB%E4%BB%BD/</guid>
+      <guid>//localhost:1313/post/2026/02/28/%E6%95%B0%E5%AD%97%E8%BA%AB%E4%BB%BD/</guid>
       <description>&lt;p&gt;在Web3的世界里，数字身份是一个基础但又极其重要的议题。&lt;/p&gt;</description>
     </item>
     <item>
       <title>NFT</title>
-      <link>/post/2026/02/18/nft/</link>
+      <link>//localhost:1313/post/2026/02/18/nft/</link>
       <pubDate>Wed, 18 Feb 2026 14:14:00 +0800</pubDate>
-      <guid>/post/2026/02/18/nft/</guid>
+      <guid>//localhost:1313/post/2026/02/18/nft/</guid>
       <description>&lt;p&gt;NFT（非同质化代币）是Web3世界中最具视觉冲击力和最容易被大众理解的创新。从2021年的&amp;quot;加密艺术&amp;quot;热潮到2026年的多元化应用，NFT已经完成了从&amp;quot;昂贵的像素图片&amp;quot;到&amp;quot;数字资产所有权标准协议&amp;quot;的华丽转身。&lt;/p&gt;</description>
     </item>
   </channel>
