@@ -699,13 +699,6 @@ main {
   margin: 2.5rem 0;
 }
 
-.post-content table {
-  width: 100%;
-  min-width: 100%;
-  border-collapse: collapse;
-  margin: 0;
-}
-
 .post-content .table-wrapper {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -714,11 +707,20 @@ main {
   border: 1px solid var(--light-gray);
 }
 
+.post-content table {
+  width: auto;
+  min-width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+}
+
 .post-content th,
 .post-content td {
   padding: 0.75rem;
   border: 1px solid var(--light-gray);
   text-align: left;
+  white-space: nowrap;
+  min-width: 80px;
 }
 
 .post-content th {

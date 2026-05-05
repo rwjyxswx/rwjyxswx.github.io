@@ -46,6 +46,9 @@
       wrapper.className = 'table-wrapper';
       table.parentNode.insertBefore(wrapper, table);
       wrapper.appendChild(table);
+      
+      table.style.width = 'auto';
+      table.style.minWidth = '100%';
     });
   });
 </script>
