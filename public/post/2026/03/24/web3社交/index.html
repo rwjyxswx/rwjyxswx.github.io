@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="博客，技术，随想，极简，新中式">
@@ -9,18 +9,48 @@
 
   <title>Web3社交 - 弥罗</title>
 
-<link rel="canonical" href="//localhost:1313/post/2026/03/24/web3%E7%A4%BE%E4%BA%A4/">
+<link rel="canonical" href="../../../../../post/2026/03/24/web3%E7%A4%BE%E4%BA%A4/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23fff' stroke='%23000' stroke-width='2'/><path d='M50 2 A48 48 0 0 1 50 98 A24 24 0 0 1 50 50 A24 24 0 0 0 50 2' fill='%23000'/><circle cx='50' cy='26' r='6' fill='%23fff'/><circle cx='50' cy='74' r='6' fill='%23000'/></svg>" type="image/svg+xml">
 <link rel="stylesheet" href="../../../../../css/style.css">
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const codeBlocks = document.querySelectorAll('pre');
+    const copyIcon = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+    const checkIcon = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    
+    codeBlocks.forEach(function(block, index) {
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'copy-btn';
+      copyBtn.innerHTML = copyIcon;
+      copyBtn.title = '复制代码';
+      copyBtn.addEventListener('click', function() {
+        const code = block.querySelector('code');
+        if (code) {
+          navigator.clipboard.writeText(code.textContent).then(function() {
+            copyBtn.innerHTML = checkIcon;
+            copyBtn.title = '已复制';
+            setTimeout(function() {
+              copyBtn.innerHTML = copyIcon;
+              copyBtn.title = '复制代码';
+            }, 2000);
+          }).catch(function(err) {
+            console.error('复制失败:', err);
+          });
+        }
+      });
+      block.appendChild(copyBtn);
+    });
+  });
+</script>
 
 </head>
 <body>
   <header>
   <div class="container">
     <div class="header-content">
-      <a href="//localhost:1313/" class="logo">弥罗</a>
+      <a href="../../../../../" class="logo">弥罗</a>
       <nav class="nav-links">
-        <a href="//localhost:1313/">首页</a>
+        <a href="../../../../../">首页</a>
         <a href="../../../../../tags/">标签</a>
         <a href="../../../../../about/">关于</a>
         <button id="search-toggle" class="search-toggle" aria-label="搜索">
@@ -268,7 +298,7 @@ const searchData = [{
     "title": "代币经济学",
     "url": "./\/post\/2026\/03\/27\/%E4%BB%A3%E5%B8%81%E7%BB%8F%E6%B5%8E%E5%AD%A6\/",
     "date": "27086年9月30日",
-    "content": "代币经济学（Tokenomics）是Web3经济系统的核心。它决定了如何发行、分配和使用代币，直接影响一个协议能否实现可持续增长。今天我们讲治理代币与效用代币的区别、应用代币的设计，以及2026年代币经济模型的主流范式。\n",
+    "content": "代币经济学（Tokenomics）是Web3经济系统的核心。它决定了如何发行、分配和使用代币，直接影响一个协议能否实现可持续增长。今天我们讲治理代币与效用代币的区别、应用代币的设计，以及目前代币经济模型的主流范式。\n",
     "tags": "[\"Web3\",\"加密货币\"]"
   },{
     "title": "Web3社交",

@@ -2,129 +2,129 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on 弥罗</title>
-    <link>//localhost:1313/post/</link>
+    <link>/post/</link>
     <description>Recent content in Posts on 弥罗</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Thu, 02 Apr 2026 14:14:00 +0800</lastBuildDate>
-    <atom:link href="//localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Web3生态全景</title>
-      <link>//localhost:1313/post/2026/04/02/web3%E7%94%9F%E6%80%81%E5%85%A8%E6%99%AF/</link>
+      <link>/post/2026/04/02/web3%E7%94%9F%E6%80%81%E5%85%A8%E6%99%AF/</link>
       <pubDate>Thu, 02 Apr 2026 14:14:00 +0800</pubDate>
-      <guid>//localhost:1313/post/2026/04/02/web3%E7%94%9F%E6%80%81%E5%85%A8%E6%99%AF/</guid>
+      <guid>/post/2026/04/02/web3%E7%94%9F%E6%80%81%E5%85%A8%E6%99%AF/</guid>
       <description>&lt;p&gt;今天我们将对整个Web3生态进行系统性的梳理，构建一幅完整的技术栈全景图。&lt;/p&gt;</description>
     </item>
     <item>
       <title>代币经济学</title>
-      <link>//localhost:1313/post/2026/03/27/%E4%BB%A3%E5%B8%81%E7%BB%8F%E6%B5%8E%E5%AD%A6/</link>
+      <link>/post/2026/03/27/%E4%BB%A3%E5%B8%81%E7%BB%8F%E6%B5%8E%E5%AD%A6/</link>
       <pubDate>Fri, 27 Mar 2026 14:14:00 +0800</pubDate>
-      <guid>//localhost:1313/post/2026/03/27/%E4%BB%A3%E5%B8%81%E7%BB%8F%E6%B5%8E%E5%AD%A6/</guid>
-      <description>&lt;p&gt;代币经济学（Tokenomics）是Web3经济系统的核心。它决定了如何发行、分配和使用代币，直接影响一个协议能否实现可持续增长。今天我们讲治理代币与效用代币的区别、应用代币的设计，以及2026年代币经济模型的主流范式。&lt;/p&gt;</description>
+      <guid>/post/2026/03/27/%E4%BB%A3%E5%B8%81%E7%BB%8F%E6%B5%8E%E5%AD%A6/</guid>
+      <description>&lt;p&gt;代币经济学（Tokenomics）是Web3经济系统的核心。它决定了如何发行、分配和使用代币，直接影响一个协议能否实现可持续增长。今天我们讲治理代币与效用代币的区别、应用代币的设计，以及目前代币经济模型的主流范式。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Web3社交</title>
-      <link>//localhost:1313/post/2026/03/24/web3%E7%A4%BE%E4%BA%A4/</link>
+      <link>/post/2026/03/24/web3%E7%A4%BE%E4%BA%A4/</link>
       <pubDate>Tue, 24 Mar 2026 14:14:00 +0800</pubDate>
-      <guid>//localhost:1313/post/2026/03/24/web3%E7%A4%BE%E4%BA%A4/</guid>
+      <guid>/post/2026/03/24/web3%E7%A4%BE%E4%BA%A4/</guid>
       <description>&lt;p&gt;今天我们将了解Web3社交网络——一个正在快速发展的领域如果说Web2社交（如微信、X、Facebook）是&amp;quot;数据围墙&amp;quot;，那么Web3社交协议就是&amp;quot;流动的数字庄园&amp;quot;。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Cosmos生态</title>
-      <link>//localhost:1313/post/2026/03/21/cosmos%E7%94%9F%E6%80%81/</link>
+      <link>/post/2026/03/21/cosmos%E7%94%9F%E6%80%81/</link>
       <pubDate>Sat, 21 Mar 2026 14:14:00 +0800</pubDate>
-      <guid>//localhost:1313/post/2026/03/21/cosmos%E7%94%9F%E6%80%81/</guid>
+      <guid>/post/2026/03/21/cosmos%E7%94%9F%E6%80%81/</guid>
       <description>&lt;p&gt;如果说以太坊是一个巨大的&amp;quot;超级大卖场&amp;quot;，所有人都在里面挤着摆摊；那么Cosmos则是为每个人提供一整套&amp;quot;开店工具&amp;quot;，让你能快速盖起自己的专卖店，并且所有的专卖店之间都能通过一条&amp;quot;高速公路&amp;quot;互相连通。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Web3游戏</title>
-      <link>//localhost:1313/post/2026/03/21/web3%E6%B8%B8%E6%88%8F/</link>
+      <link>/post/2026/03/21/web3%E6%B8%B8%E6%88%8F/</link>
       <pubDate>Sat, 21 Mar 2026 14:14:00 +0800</pubDate>
-      <guid>//localhost:1313/post/2026/03/21/web3%E6%B8%B8%E6%88%8F/</guid>
+      <guid>/post/2026/03/21/web3%E6%B8%B8%E6%88%8F/</guid>
       <description>&lt;p&gt;今天我们将了解Web3游戏的最前沿领域：全链游戏（Fully On-chain Games）、自治世界（Autonomous Worlds），以及现在Web3游戏的技术架构与商业创新。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Web3投资指南</title>
-      <link>//localhost:1313/post/2026/03/12/web3%E6%8A%95%E8%B5%84%E6%8C%87%E5%8D%97/</link>
+      <link>/post/2026/03/12/web3%E6%8A%95%E8%B5%84%E6%8C%87%E5%8D%97/</link>
       <pubDate>Thu, 12 Mar 2026 14:14:00 +0800</pubDate>
-      <guid>//localhost:1313/post/2026/03/12/web3%E6%8A%95%E8%B5%84%E6%8C%87%E5%8D%97/</guid>
+      <guid>/post/2026/03/12/web3%E6%8A%95%E8%B5%84%E6%8C%87%E5%8D%97/</guid>
       <description>&lt;p&gt;Web3投资是一个复杂但充满机遇的领域。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Web3安全指南</title>
-      <link>//localhost:1313/post/2026/03/08/web3%E5%AE%89%E5%85%A8%E6%8C%87%E5%8D%97/</link>
+      <link>/post/2026/03/08/web3%E5%AE%89%E5%85%A8%E6%8C%87%E5%8D%97/</link>
       <pubDate>Sun, 08 Mar 2026 14:14:00 +0800</pubDate>
-      <guid>//localhost:1313/post/2026/03/08/web3%E5%AE%89%E5%85%A8%E6%8C%87%E5%8D%97/</guid>
+      <guid>/post/2026/03/08/web3%E5%AE%89%E5%85%A8%E6%8C%87%E5%8D%97/</guid>
       <description>&lt;p&gt;Web3的安全性是一个永恒的话题。&lt;/p&gt;</description>
     </item>
     <item>
       <title>元宇宙与GameFi</title>
-      <link>//localhost:1313/post/2026/03/07/%E5%85%83%E5%AE%87%E5%AE%99%E4%B8%8Egamefi/</link>
+      <link>/post/2026/03/07/%E5%85%83%E5%AE%87%E5%AE%99%E4%B8%8Egamefi/</link>
       <pubDate>Sat, 07 Mar 2026 14:14:00 +0800</pubDate>
-      <guid>//localhost:1313/post/2026/03/07/%E5%85%83%E5%AE%87%E5%AE%99%E4%B8%8Egamefi/</guid>
+      <guid>/post/2026/03/07/%E5%85%83%E5%AE%87%E5%AE%99%E4%B8%8Egamefi/</guid>
       <description>&lt;p&gt;元宇宙和GameFi代表了Web3在虚拟世界和游戏领域的前沿探索。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Layer2与跨链</title>
-      <link>//localhost:1313/post/2026/03/06/layer2%E4%B8%8E%E8%B7%A8%E9%93%BE/</link>
+      <link>/post/2026/03/06/layer2%E4%B8%8E%E8%B7%A8%E9%93%BE/</link>
       <pubDate>Fri, 06 Mar 2026 14:14:00 +0800</pubDate>
-      <guid>//localhost:1313/post/2026/03/06/layer2%E4%B8%8E%E8%B7%A8%E9%93%BE/</guid>
+      <guid>/post/2026/03/06/layer2%E4%B8%8E%E8%B7%A8%E9%93%BE/</guid>
       <description>&lt;p&gt;区块链的可扩展性是Web3大规模应用的关键。Layer2解决方案和跨链技术正是解决这一挑战的核心基础设施。&lt;/p&gt;</description>
     </item>
     <item>
       <title>数字身份</title>
-      <link>//localhost:1313/post/2026/02/28/%E6%95%B0%E5%AD%97%E8%BA%AB%E4%BB%BD/</link>
+      <link>/post/2026/02/28/%E6%95%B0%E5%AD%97%E8%BA%AB%E4%BB%BD/</link>
       <pubDate>Sat, 28 Feb 2026 14:14:00 +0800</pubDate>
-      <guid>//localhost:1313/post/2026/02/28/%E6%95%B0%E5%AD%97%E8%BA%AB%E4%BB%BD/</guid>
+      <guid>/post/2026/02/28/%E6%95%B0%E5%AD%97%E8%BA%AB%E4%BB%BD/</guid>
       <description>&lt;p&gt;在Web3的世界里，数字身份是一个基础但又极其重要的议题。&lt;/p&gt;</description>
     </item>
     <item>
       <title>DAO</title>
-      <link>//localhost:1313/post/2026/02/25/dao/</link>
+      <link>/post/2026/02/25/dao/</link>
       <pubDate>Wed, 25 Feb 2026 14:14:00 +0800</pubDate>
-      <guid>//localhost:1313/post/2026/02/25/dao/</guid>
+      <guid>/post/2026/02/25/dao/</guid>
       <description>&lt;p&gt;DAO（去中心化自治组织）是Web3世界中最具革命性的组织形态。它代表了一种全新的协作方式——用代码和代币来协调大规模的人类协作，取代传统的公司层级结构。&lt;/p&gt;</description>
     </item>
     <item>
       <title>DeFi</title>
-      <link>//localhost:1313/post/2026/02/25/defi/</link>
+      <link>/post/2026/02/25/defi/</link>
       <pubDate>Wed, 25 Feb 2026 14:14:00 +0800</pubDate>
-      <guid>//localhost:1313/post/2026/02/25/defi/</guid>
+      <guid>/post/2026/02/25/defi/</guid>
       <description>&lt;p&gt;DeFi（去中心化金融）是Web3世界中最具颠覆性的应用领域之一。它旨在使用区块链技术和智能合约，重新构建传统金融体系的每一个组成部分——借贷、交易、衍生品、保险、支付等。&lt;/p&gt;</description>
     </item>
     <item>
       <title>NFT</title>
-      <link>//localhost:1313/post/2026/02/18/nft/</link>
+      <link>/post/2026/02/18/nft/</link>
       <pubDate>Wed, 18 Feb 2026 14:14:00 +0800</pubDate>
-      <guid>//localhost:1313/post/2026/02/18/nft/</guid>
+      <guid>/post/2026/02/18/nft/</guid>
       <description>&lt;p&gt;NFT（非同质化代币）是Web3世界中最具视觉冲击力和最容易被大众理解的创新。从2021年的&amp;quot;加密艺术&amp;quot;热潮到2026年的多元化应用，NFT已经完成了从&amp;quot;昂贵的像素图片&amp;quot;到&amp;quot;数字资产所有权标准协议&amp;quot;的华丽转身。&lt;/p&gt;</description>
     </item>
     <item>
       <title>智能合约</title>
-      <link>//localhost:1313/post/2026/02/14/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/</link>
+      <link>/post/2026/02/14/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/</link>
       <pubDate>Sat, 14 Feb 2026 14:14:00 +0800</pubDate>
-      <guid>//localhost:1313/post/2026/02/14/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/</guid>
+      <guid>/post/2026/02/14/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/</guid>
       <description>&lt;p&gt;智能合约（Smart Contract）是Web3世界中最核心的技术创新之一。它不仅是以太坊的标志性特性，更是整个Web3应用生态的基石。&lt;/p&gt;</description>
     </item>
     <item>
       <title>加密货币</title>
-      <link>//localhost:1313/post/2026/02/10/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</link>
+      <link>/post/2026/02/10/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</link>
       <pubDate>Tue, 10 Feb 2026 14:14:00 +0800</pubDate>
-      <guid>//localhost:1313/post/2026/02/10/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</guid>
+      <guid>/post/2026/02/10/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/</guid>
       <description>&lt;p&gt;加密货币（Cryptocurrency）是Web3世界中最直观、最容易被理解的组成部分，也是整个Web3生态的价值载体。&lt;/p&gt;</description>
     </item>
     <item>
       <title>区块链技术</title>
-      <link>//localhost:1313/post/2026/02/04/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/</link>
+      <link>/post/2026/02/04/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/</link>
       <pubDate>Wed, 04 Feb 2026 14:14:00 +0800</pubDate>
-      <guid>//localhost:1313/post/2026/02/04/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/</guid>
+      <guid>/post/2026/02/04/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/</guid>
       <description>&lt;p&gt;区块链技术是Web3的根基，它不仅是一种技术架构，更是一种重新定义信任的范式转变。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Web3是什么</title>
-      <link>//localhost:1313/post/2026/02/01/web3%E6%98%AF%E4%BB%80%E4%B9%88/</link>
+      <link>/post/2026/02/01/web3%E6%98%AF%E4%BB%80%E4%B9%88/</link>
       <pubDate>Sun, 01 Feb 2026 14:14:00 +0800</pubDate>
-      <guid>//localhost:1313/post/2026/02/01/web3%E6%98%AF%E4%BB%80%E4%B9%88/</guid>
+      <guid>/post/2026/02/01/web3%E6%98%AF%E4%BB%80%E4%B9%88/</guid>
       <description></description>
     </item>
   </channel>

@@ -594,7 +594,6 @@ main {
   border-radius: 4px;
   font-size: 0.9em;
   font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
-  backdrop-filter: blur(4px);
 }
 
 .post-content pre {
@@ -1150,6 +1149,14 @@ footer .footer-content a.icp-badge:hover {
     padding: 1rem;
     font-size: 0.9rem;
   }
+  
+  .copy-btn {
+    width: 24px;
+    height: 24px;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.3rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1226,6 +1233,14 @@ footer .footer-content a.icp-badge:hover {
   .post-content pre {
     padding: 0.8rem;
     font-size: 0.85rem;
+  }
+  
+  .copy-btn {
+    width: 22px;
+    height: 22px;
+    top: 0.4rem;
+    right: 0.4rem;
+    padding: 0.25rem;
   }
   
   .footer-content {

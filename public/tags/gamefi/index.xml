@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>GameFi on 弥罗</title>
-    <link>//localhost:1313/tags/gamefi/</link>
+    <link>/tags/gamefi/</link>
     <description>Recent content in GameFi on 弥罗</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 21 Mar 2026 14:14:00 +0800</lastBuildDate>
-    <atom:link href="//localhost:1313/tags/gamefi/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/gamefi/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Web3游戏</title>
-      <link>//localhost:1313/post/2026/03/21/web3%E6%B8%B8%E6%88%8F/</link>
+      <link>/post/2026/03/21/web3%E6%B8%B8%E6%88%8F/</link>
       <pubDate>Sat, 21 Mar 2026 14:14:00 +0800</pubDate>
-      <guid>//localhost:1313/post/2026/03/21/web3%E6%B8%B8%E6%88%8F/</guid>
+      <guid>/post/2026/03/21/web3%E6%B8%B8%E6%88%8F/</guid>
       <description>&lt;p&gt;今天我们将了解Web3游戏的最前沿领域：全链游戏（Fully On-chain Games）、自治世界（Autonomous Worlds），以及现在Web3游戏的技术架构与商业创新。&lt;/p&gt;</description>
     </item>
   </channel>

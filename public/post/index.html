@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="博客，技术，随想，极简，新中式">
@@ -9,18 +9,48 @@
 
   <title>Posts - 弥罗</title>
 
-<link rel="canonical" href="//localhost:1313/post/">
+<link rel="canonical" href="../post/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23fff' stroke='%23000' stroke-width='2'/><path d='M50 2 A48 48 0 0 1 50 98 A24 24 0 0 1 50 50 A24 24 0 0 0 50 2' fill='%23000'/><circle cx='50' cy='26' r='6' fill='%23fff'/><circle cx='50' cy='74' r='6' fill='%23000'/></svg>" type="image/svg+xml">
 <link rel="stylesheet" href="../css/style.css">
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const codeBlocks = document.querySelectorAll('pre');
+    const copyIcon = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+    const checkIcon = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    
+    codeBlocks.forEach(function(block, index) {
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'copy-btn';
+      copyBtn.innerHTML = copyIcon;
+      copyBtn.title = '复制代码';
+      copyBtn.addEventListener('click', function() {
+        const code = block.querySelector('code');
+        if (code) {
+          navigator.clipboard.writeText(code.textContent).then(function() {
+            copyBtn.innerHTML = checkIcon;
+            copyBtn.title = '已复制';
+            setTimeout(function() {
+              copyBtn.innerHTML = copyIcon;
+              copyBtn.title = '复制代码';
+            }, 2000);
+          }).catch(function(err) {
+            console.error('复制失败:', err);
+          });
+        }
+      });
+      block.appendChild(copyBtn);
+    });
+  });
+</script>
 
 </head>
 <body>
   <header>
   <div class="container">
     <div class="header-content">
-      <a href="//localhost:1313/" class="logo">弥罗</a>
+      <a href="../" class="logo">弥罗</a>
       <nav class="nav-links">
-        <a href="//localhost:1313/">首页</a>
+        <a href="../">首页</a>
         <a href="../tags/">标签</a>
         <a href="../about/">关于</a>
         <button id="search-toggle" class="search-toggle" aria-label="搜索">
@@ -76,7 +106,7 @@
     <ul class="post-list">
     
     <li class="post-item">
-      <a href="//localhost:1313/post/2026/04/02/web3%E7%94%9F%E6%80%81%E5%85%A8%E6%99%AF/" class="post-title">Web3生态全景</a>
+      <a href="../post/2026/04/02/web3%E7%94%9F%E6%80%81%E5%85%A8%E6%99%AF/" class="post-title">Web3生态全景</a>
       <div class="post-meta">
         <span>2026年4月2日</span>
       </div>
@@ -84,15 +114,15 @@
     </li>
     
     <li class="post-item">
-      <a href="//localhost:1313/post/2026/03/27/%E4%BB%A3%E5%B8%81%E7%BB%8F%E6%B5%8E%E5%AD%A6/" class="post-title">代币经济学</a>
+      <a href="../post/2026/03/27/%E4%BB%A3%E5%B8%81%E7%BB%8F%E6%B5%8E%E5%AD%A6/" class="post-title">代币经济学</a>
       <div class="post-meta">
         <span>2026年3月27日</span>
       </div>
-      <p class="post-excerpt"><p>代币经济学（Tokenomics）是Web3经济系统的核心。它决定了如何发行、分配和使用代币，直接影响一个协议能否实现可持续增长。今天我们讲治理代币与效用代币的区别、应用代币的设计，以及2026年代币经济模型的主流范式。</p></p>
+      <p class="post-excerpt"><p>代币经济学（Tokenomics）是Web3经济系统的核心。它决定了如何发行、分配和使用代币，直接影响一个协议能否实现可持续增长。今天我们讲治理代币与效用代币的区别、应用代币的设计，以及目前代币经济模型的主流范式。</p></p>
     </li>
     
     <li class="post-item">
-      <a href="//localhost:1313/post/2026/03/24/web3%E7%A4%BE%E4%BA%A4/" class="post-title">Web3社交</a>
+      <a href="../post/2026/03/24/web3%E7%A4%BE%E4%BA%A4/" class="post-title">Web3社交</a>
       <div class="post-meta">
         <span>2026年3月24日</span>
       </div>
@@ -100,7 +130,7 @@
     </li>
     
     <li class="post-item">
-      <a href="//localhost:1313/post/2026/03/21/cosmos%E7%94%9F%E6%80%81/" class="post-title">Cosmos生态</a>
+      <a href="../post/2026/03/21/cosmos%E7%94%9F%E6%80%81/" class="post-title">Cosmos生态</a>
       <div class="post-meta">
         <span>2026年3月21日</span>
       </div>
@@ -108,7 +138,7 @@
     </li>
     
     <li class="post-item">
-      <a href="//localhost:1313/post/2026/03/21/web3%E6%B8%B8%E6%88%8F/" class="post-title">Web3游戏</a>
+      <a href="../post/2026/03/21/web3%E6%B8%B8%E6%88%8F/" class="post-title">Web3游戏</a>
       <div class="post-meta">
         <span>2026年3月21日</span>
       </div>
@@ -116,7 +146,7 @@
     </li>
     
     <li class="post-item">
-      <a href="//localhost:1313/post/2026/03/12/web3%E6%8A%95%E8%B5%84%E6%8C%87%E5%8D%97/" class="post-title">Web3投资指南</a>
+      <a href="../post/2026/03/12/web3%E6%8A%95%E8%B5%84%E6%8C%87%E5%8D%97/" class="post-title">Web3投资指南</a>
       <div class="post-meta">
         <span>2026年3月12日</span>
       </div>
@@ -124,7 +154,7 @@
     </li>
     
     <li class="post-item">
-      <a href="//localhost:1313/post/2026/03/08/web3%E5%AE%89%E5%85%A8%E6%8C%87%E5%8D%97/" class="post-title">Web3安全指南</a>
+      <a href="../post/2026/03/08/web3%E5%AE%89%E5%85%A8%E6%8C%87%E5%8D%97/" class="post-title">Web3安全指南</a>
       <div class="post-meta">
         <span>2026年3月8日</span>
       </div>
@@ -132,7 +162,7 @@
     </li>
     
     <li class="post-item">
-      <a href="//localhost:1313/post/2026/03/07/%E5%85%83%E5%AE%87%E5%AE%99%E4%B8%8Egamefi/" class="post-title">元宇宙与GameFi</a>
+      <a href="../post/2026/03/07/%E5%85%83%E5%AE%87%E5%AE%99%E4%B8%8Egamefi/" class="post-title">元宇宙与GameFi</a>
       <div class="post-meta">
         <span>2026年3月7日</span>
       </div>
@@ -140,7 +170,7 @@
     </li>
     
     <li class="post-item">
-      <a href="//localhost:1313/post/2026/03/06/layer2%E4%B8%8E%E8%B7%A8%E9%93%BE/" class="post-title">Layer2与跨链</a>
+      <a href="../post/2026/03/06/layer2%E4%B8%8E%E8%B7%A8%E9%93%BE/" class="post-title">Layer2与跨链</a>
       <div class="post-meta">
         <span>2026年3月6日</span>
       </div>
@@ -148,7 +178,7 @@
     </li>
     
     <li class="post-item">
-      <a href="//localhost:1313/post/2026/02/28/%E6%95%B0%E5%AD%97%E8%BA%AB%E4%BB%BD/" class="post-title">数字身份</a>
+      <a href="../post/2026/02/28/%E6%95%B0%E5%AD%97%E8%BA%AB%E4%BB%BD/" class="post-title">数字身份</a>
       <div class="post-meta">
         <span>2026年2月28日</span>
       </div>
@@ -156,7 +186,7 @@
     </li>
     
     <li class="post-item">
-      <a href="//localhost:1313/post/2026/02/25/dao/" class="post-title">DAO</a>
+      <a href="../post/2026/02/25/dao/" class="post-title">DAO</a>
       <div class="post-meta">
         <span>2026年2月25日</span>
       </div>
@@ -164,7 +194,7 @@
     </li>
     
     <li class="post-item">
-      <a href="//localhost:1313/post/2026/02/25/defi/" class="post-title">DeFi</a>
+      <a href="../post/2026/02/25/defi/" class="post-title">DeFi</a>
       <div class="post-meta">
         <span>2026年2月25日</span>
       </div>
@@ -172,7 +202,7 @@
     </li>
     
     <li class="post-item">
-      <a href="//localhost:1313/post/2026/02/18/nft/" class="post-title">NFT</a>
+      <a href="../post/2026/02/18/nft/" class="post-title">NFT</a>
       <div class="post-meta">
         <span>2026年2月18日</span>
       </div>
@@ -180,7 +210,7 @@
     </li>
     
     <li class="post-item">
-      <a href="//localhost:1313/post/2026/02/14/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" class="post-title">智能合约</a>
+      <a href="../post/2026/02/14/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" class="post-title">智能合约</a>
       <div class="post-meta">
         <span>2026年2月14日</span>
       </div>
@@ -188,7 +218,7 @@
     </li>
     
     <li class="post-item">
-      <a href="//localhost:1313/post/2026/02/10/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/" class="post-title">加密货币</a>
+      <a href="../post/2026/02/10/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81/" class="post-title">加密货币</a>
       <div class="post-meta">
         <span>2026年2月10日</span>
       </div>
@@ -196,7 +226,7 @@
     </li>
     
     <li class="post-item">
-      <a href="//localhost:1313/post/2026/02/04/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/" class="post-title">区块链技术</a>
+      <a href="../post/2026/02/04/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF/" class="post-title">区块链技术</a>
       <div class="post-meta">
         <span>2026年2月4日</span>
       </div>
@@ -204,7 +234,7 @@
     </li>
     
     <li class="post-item">
-      <a href="//localhost:1313/post/2026/02/01/web3%E6%98%AF%E4%BB%80%E4%B9%88/" class="post-title">Web3是什么</a>
+      <a href="../post/2026/02/01/web3%E6%98%AF%E4%BB%80%E4%B9%88/" class="post-title">Web3是什么</a>
       <div class="post-meta">
         <span>2026年2月1日</span>
       </div>
@@ -241,7 +271,7 @@ const searchData = [{
     "title": "代币经济学",
     "url": "./\/post\/2026\/03\/27\/%E4%BB%A3%E5%B8%81%E7%BB%8F%E6%B5%8E%E5%AD%A6\/",
     "date": "27086年9月30日",
-    "content": "代币经济学（Tokenomics）是Web3经济系统的核心。它决定了如何发行、分配和使用代币，直接影响一个协议能否实现可持续增长。今天我们讲治理代币与效用代币的区别、应用代币的设计，以及2026年代币经济模型的主流范式。\n",
+    "content": "代币经济学（Tokenomics）是Web3经济系统的核心。它决定了如何发行、分配和使用代币，直接影响一个协议能否实现可持续增长。今天我们讲治理代币与效用代币的区别、应用代币的设计，以及目前代币经济模型的主流范式。\n",
     "tags": "[\"Web3\",\"加密货币\"]"
   },{
     "title": "Web3社交",

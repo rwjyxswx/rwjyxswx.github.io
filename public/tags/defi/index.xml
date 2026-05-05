@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>DeFi on 弥罗</title>
-    <link>//localhost:1313/tags/defi/</link>
+    <link>/tags/defi/</link>
     <description>Recent content in DeFi on 弥罗</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Wed, 25 Feb 2026 14:14:00 +0800</lastBuildDate>
-    <atom:link href="//localhost:1313/tags/defi/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/defi/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DeFi</title>
-      <link>//localhost:1313/post/2026/02/25/defi/</link>
+      <link>/post/2026/02/25/defi/</link>
       <pubDate>Wed, 25 Feb 2026 14:14:00 +0800</pubDate>
-      <guid>//localhost:1313/post/2026/02/25/defi/</guid>
+      <guid>/post/2026/02/25/defi/</guid>
       <description>&lt;p&gt;DeFi（去中心化金融）是Web3世界中最具颠覆性的应用领域之一。它旨在使用区块链技术和智能合约，重新构建传统金融体系的每一个组成部分——借贷、交易、衍生品、保险、支付等。&lt;/p&gt;</description>
     </item>
   </channel>

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>智能合约 on 弥罗</title>
-    <link>//localhost:1313/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/</link>
+    <link>/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/</link>
     <description>Recent content in 智能合约 on 弥罗</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 14 Feb 2026 14:14:00 +0800</lastBuildDate>
-    <atom:link href="//localhost:1313/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>智能合约</title>
-      <link>//localhost:1313/post/2026/02/14/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/</link>
+      <link>/post/2026/02/14/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/</link>
       <pubDate>Sat, 14 Feb 2026 14:14:00 +0800</pubDate>
-      <guid>//localhost:1313/post/2026/02/14/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/</guid>
+      <guid>/post/2026/02/14/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/</guid>
       <description>&lt;p&gt;智能合约（Smart Contract）是Web3世界中最核心的技术创新之一。它不仅是以太坊的标志性特性，更是整个Web3应用生态的基石。&lt;/p&gt;</description>
     </item>
   </channel>
