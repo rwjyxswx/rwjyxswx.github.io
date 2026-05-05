@@ -11,3 +11,33 @@
 <link rel="canonical" href="{{ .Permalink }}">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23fff' stroke='%23000' stroke-width='2'/><path d='M50 2 A48 48 0 0 1 50 98 A24 24 0 0 1 50 50 A24 24 0 0 0 50 2' fill='%23000'/><circle cx='50' cy='26' r='6' fill='%23fff'/><circle cx='50' cy='74' r='6' fill='%23000'/></svg>" type="image/svg+xml">
 <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const codeBlocks = document.querySelectorAll('pre');
+    const copyIcon = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+    const checkIcon = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    
+    codeBlocks.forEach(function(block, index) {
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'copy-btn';
+      copyBtn.innerHTML = copyIcon;
+      copyBtn.title = '复制代码';
+      copyBtn.addEventListener('click', function() {
+        const code = block.querySelector('code');
+        if (code) {
+          navigator.clipboard.writeText(code.textContent).then(function() {
+            copyBtn.innerHTML = checkIcon;
+            copyBtn.title = '已复制';
+            setTimeout(function() {
+              copyBtn.innerHTML = copyIcon;
+              copyBtn.title = '复制代码';
+            }, 2000);
+          }).catch(function(err) {
+            console.error('复制失败:', err);
+          });
+        }
+      });
+      block.appendChild(copyBtn);
+    });
+  });
+</script>
