@@ -10,9 +10,9 @@
 
   <title>弥罗</title>
 
-<link rel="canonical" href="../../">
+<link rel="canonical" href="/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23fff' stroke='%23000' stroke-width='2'/><path d='M50 2 A48 48 0 0 1 50 98 A24 24 0 0 1 50 50 A24 24 0 0 0 50 2' fill='%23000'/><circle cx='50' cy='26' r='6' fill='%23fff'/><circle cx='50' cy='74' r='6' fill='%23000'/></svg>" type="image/svg+xml">
-<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const codeBlocks = document.querySelectorAll('pre');
@@ -41,6 +41,17 @@
       });
       block.appendChild(copyBtn);
     });
+    
+    const tables = document.querySelectorAll('.post-content table');
+    tables.forEach(function(table) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'table-wrapper';
+      table.parentNode.insertBefore(wrapper, table);
+      wrapper.appendChild(table);
+      
+      table.style.width = 'auto';
+      table.style.minWidth = '100%';
+    });
   });
 </script>
 
@@ -49,11 +60,11 @@
   <header>
   <div class="container">
     <div class="header-content">
-      <a href="../../" class="logo">弥罗</a>
+      <a href="/" class="logo">弥罗</a>
       <nav class="nav-links">
-        <a href="../../">首页</a>
-        <a href="../../tags/">标签</a>
-        <a href="../../about/">关于</a>
+        <a href="/">首页</a>
+        <a href="/tags/">标签</a>
+        <a href="/about/">关于</a>
         <button id="search-toggle" class="search-toggle" aria-label="搜索">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="11" cy="11" r="8"></circle>
@@ -114,13 +125,13 @@
     <ul class="post-list">
       
       <li class="post-item">
-        <a href="../../post/2026/03/08/web3%E5%AE%89%E5%85%A8%E6%8C%87%E5%8D%97/" class="post-title">Web3安全指南</a>
+        <a href="/post/2026/03/08/web3%E5%AE%89%E5%85%A8%E6%8C%87%E5%8D%97/" class="post-title">Web3安全指南</a>
         <div class="post-meta">
           <span>2026年3月8日</span>
           
           <span>
             
-            <a href="../../tags/web3/" class="tag">Web3</a>
+            <a href="/tags/web3/" class="tag">Web3</a>
             
           </span>
           
@@ -129,15 +140,15 @@
       </li>
       
       <li class="post-item">
-        <a href="../../post/2026/03/07/%E5%85%83%E5%AE%87%E5%AE%99%E4%B8%8Egamefi/" class="post-title">元宇宙与GameFi</a>
+        <a href="/post/2026/03/07/%E5%85%83%E5%AE%87%E5%AE%99%E4%B8%8Egamefi/" class="post-title">元宇宙与GameFi</a>
         <div class="post-meta">
           <span>2026年3月7日</span>
           
           <span>
             
-            <a href="../../tags/web3/" class="tag">Web3</a>
+            <a href="/tags/web3/" class="tag">Web3</a>
             
-            <a href="../../tags/%E5%85%83%E5%AE%87%E5%AE%99/" class="tag">元宇宙</a>
+            <a href="/tags/%E5%85%83%E5%AE%87%E5%AE%99/" class="tag">元宇宙</a>
             
           </span>
           
@@ -146,15 +157,15 @@
       </li>
       
       <li class="post-item">
-        <a href="../../post/2026/03/06/layer2%E4%B8%8E%E8%B7%A8%E9%93%BE/" class="post-title">Layer2与跨链</a>
+        <a href="/post/2026/03/06/layer2%E4%B8%8E%E8%B7%A8%E9%93%BE/" class="post-title">Layer2与跨链</a>
         <div class="post-meta">
           <span>2026年3月6日</span>
           
           <span>
             
-            <a href="../../tags/web3/" class="tag">Web3</a>
+            <a href="/tags/web3/" class="tag">Web3</a>
             
-            <a href="../../tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" class="tag">区块链</a>
+            <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" class="tag">区块链</a>
             
           </span>
           
@@ -163,15 +174,15 @@
       </li>
       
       <li class="post-item">
-        <a href="../../post/2026/02/28/%E6%95%B0%E5%AD%97%E8%BA%AB%E4%BB%BD/" class="post-title">数字身份</a>
+        <a href="/post/2026/02/28/%E6%95%B0%E5%AD%97%E8%BA%AB%E4%BB%BD/" class="post-title">数字身份</a>
         <div class="post-meta">
           <span>2026年2月28日</span>
           
           <span>
             
-            <a href="../../tags/web3/" class="tag">Web3</a>
+            <a href="/tags/web3/" class="tag">Web3</a>
             
-            <a href="../../tags/nft/" class="tag">NFT</a>
+            <a href="/tags/nft/" class="tag">NFT</a>
             
           </span>
           
@@ -180,15 +191,15 @@
       </li>
       
       <li class="post-item">
-        <a href="../../post/2026/02/25/dao/" class="post-title">DAO</a>
+        <a href="/post/2026/02/25/dao/" class="post-title">DAO</a>
         <div class="post-meta">
           <span>2026年2月25日</span>
           
           <span>
             
-            <a href="../../tags/web3/" class="tag">Web3</a>
+            <a href="/tags/web3/" class="tag">Web3</a>
             
-            <a href="../../tags/dao/" class="tag">DAO</a>
+            <a href="/tags/dao/" class="tag">DAO</a>
             
           </span>
           
@@ -197,15 +208,15 @@
       </li>
       
       <li class="post-item">
-        <a href="../../post/2026/02/25/defi/" class="post-title">DeFi</a>
+        <a href="/post/2026/02/25/defi/" class="post-title">DeFi</a>
         <div class="post-meta">
           <span>2026年2月25日</span>
           
           <span>
             
-            <a href="../../tags/web3/" class="tag">Web3</a>
+            <a href="/tags/web3/" class="tag">Web3</a>
             
-            <a href="../../tags/defi/" class="tag">DeFi</a>
+            <a href="/tags/defi/" class="tag">DeFi</a>
             
           </span>
           
@@ -220,7 +231,7 @@
 
 <nav class="pagination">
   
-    <a href="../../" aria-label="上一页">&laquo;</a>
+    <a href="/" aria-label="上一页">&laquo;</a>
   
   
   
@@ -230,7 +241,7 @@
   
     
       
-        <a href="../../" class="page-number">1</a>
+        <a href="/" class="page-number">1</a>
       
     
       
@@ -238,13 +249,13 @@
       
     
       
-        <a href="../../page/3/" class="page-number">3</a>
+        <a href="/page/3/" class="page-number">3</a>
       
     
   
   
   
-    <a href="../../page/3/" aria-label="下一页">&raquo;</a>
+    <a href="/page/3/" aria-label="下一页">&raquo;</a>
   
 </nav>
 
@@ -264,7 +275,7 @@
     </div>
   </div>
 </footer>
-<script src="../../js/hitokoto-data.js"></script>
+<script src="/js/hitokoto-data.js"></script>
 <script>
 const searchData = [{
     "title": "Web3生态全景",

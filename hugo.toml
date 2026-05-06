@@ -1,9 +1,9 @@
-baseURL = ""
+baseURL = "/"
 title = "弥罗"
 theme = "minimal-chinese"
 defaultContentLanguage = "zh-cn"
 enableRobotsTXT = true
-relativeURLs = true
+relativeURLs = false
 uglyURLs = false
 
 [params]
